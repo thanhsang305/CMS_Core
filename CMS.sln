@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS_API", "CMS\CMS_API.csproj", "{32EF18E3-DC4E-4FA6-89A7-A04641911E2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS_Library", "CMS_Library\CMS_Library.csproj", "{47529B6A-0C71-4452-8930-F48D62D11372}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32EF18E3-DC4E-4FA6-89A7-A04641911E2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32EF18E3-DC4E-4FA6-89A7-A04641911E2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32EF18E3-DC4E-4FA6-89A7-A04641911E2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32EF18E3-DC4E-4FA6-89A7-A04641911E2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47529B6A-0C71-4452-8930-F48D62D11372}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47529B6A-0C71-4452-8930-F48D62D11372}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47529B6A-0C71-4452-8930-F48D62D11372}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47529B6A-0C71-4452-8930-F48D62D11372}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B478111-160B-4210-9970-549ADB945D16}
+	EndGlobalSection
+EndGlobal

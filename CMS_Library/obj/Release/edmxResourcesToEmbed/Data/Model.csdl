@@ -1,0 +1,755 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GUID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IdCardNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="GroupID" Type="Int32" />
+    <Property Name="TokenRegister" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ExpireTokenRegister" Type="DateTime" Precision="3" />
+    <Property Name="TokenLogin" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ExpireTokenLogin" Type="DateTime" Precision="3" />
+    <Property Name="TokenForgotPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ExpireTokenForgotPassword" Type="DateTime" Precision="3" />
+    <Property Name="IsAppove" Type="Boolean" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="IsVerifyEmail" Type="Boolean" />
+    <Property Name="IsVerifyPhone" Type="Boolean" />
+    <Property Name="IsBanned" Type="Boolean" />
+    <Property Name="DateBanned" Type="DateTime" Precision="3" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Group" Relationship="Self.FK_Account_Group" FromRole="Accounts" ToRole="Groups" />
+    <NavigationProperty Name="Roles" Relationship="Self.Account_Role" FromRole="Accounts" ToRole="Roles" />
+  </EntityType>
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Alias" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Tags" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="CategoryID" Type="Int32" />
+    <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DatePost" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Blogs_Category" FromRole="Blogs" ToRole="Category" />
+    <NavigationProperty Name="Postlinks" Relationship="Self.FK_Postlink_Blog" FromRole="Blogs" ToRole="Postlink" />
+  </EntityType>
+  <EntityType Name="CampaignDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CampaignID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Campaign">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CampaignName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CampaignDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CampaignContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Webkey" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ProductTypeApply" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ProductApply" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Coupons" Relationship="Self.CampaignCoupon" FromRole="Campaigns" ToRole="Coupons" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Blogs" Relationship="Self.FK_Blogs_Category" FromRole="Category" ToRole="Blogs" />
+  </EntityType>
+  <EntityType Name="CouponDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CouponID" Type="Int32" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="DateUsed" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Coupon">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Count" Type="Int32" />
+    <Property Name="CountPerUser" Type="Int32" />
+    <Property Name="Render" Type="Boolean" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DateStart" Type="DateTime" Precision="3" />
+    <Property Name="DateEnd" Type="DateTime" Precision="3" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TransactionCoupons" Relationship="Self.FK_TransactionCoupon_Coupon" FromRole="Coupons" ToRole="TransactionCoupon" />
+    <NavigationProperty Name="Campaigns" Relationship="Self.CampaignCoupon" FromRole="Coupons" ToRole="Campaigns" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Group" FromRole="Groups" ToRole="Accounts" />
+    <NavigationProperty Name="Roles" Relationship="Self.Group_Role" FromRole="Groups" ToRole="Roles" />
+  </EntityType>
+  <EntityType Name="GroupUser">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Language">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CurrencyCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="IsDefault" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Medium">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Media" FromRole="Media" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="ClientID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SecretKey" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Postlink">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="BlogID" Type="Int32" />
+    <NavigationProperty Name="Blog" Relationship="Self.FK_Postlink_Blog" FromRole="Postlink" ToRole="Blogs" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Postlink_Product" FromRole="Postlink" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductTypeID" Type="Int32" />
+    <Property Name="SKU" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ShortDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HashTag" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SupplierPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SellingPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="DiscountPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MediaID" Type="Int32" />
+    <Property Name="SupplierID" Type="Int32" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="BestSeller" Type="Boolean" />
+    <Property Name="Newest" Type="Boolean" />
+    <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Medium" Relationship="Self.FK_Product_Media" FromRole="Products" ToRole="Media" />
+    <NavigationProperty Name="Postlinks" Relationship="Self.FK_Postlink_Product" FromRole="Products" ToRole="Postlink" />
+    <NavigationProperty Name="ProductType" Relationship="Self.FK_Product_ProductType" FromRole="Products" ToRole="ProductType" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_Product_Supplier" FromRole="Products" ToRole="Suppliers" />
+  </EntityType>
+  <EntityType Name="ProductType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_ProductType" FromRole="ProductType" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Resource">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Accounts" Relationship="Self.Account_Role" FromRole="Roles" ToRole="Accounts" />
+    <NavigationProperty Name="Groups" Relationship="Self.Group_Role" FromRole="Roles" ToRole="Groups" />
+  </EntityType>
+  <EntityType Name="SettingGroup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Settings" Relationship="Self.FK_Settings_SettingGroup" FromRole="SettingGroup" ToRole="Settings" />
+  </EntityType>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="SettingTypeID" Type="Int32" />
+    <Property Name="SettingGroupID" Type="Int32" />
+    <NavigationProperty Name="SettingGroup" Relationship="Self.FK_Settings_SettingGroup" FromRole="Settings" ToRole="SettingGroup" />
+    <NavigationProperty Name="SettingType" Relationship="Self.FK_Settings_SettingType" FromRole="Settings" ToRole="SettingType" />
+  </EntityType>
+  <EntityType Name="SettingType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Settings" Relationship="Self.FK_Settings_SettingType" FromRole="SettingType" ToRole="Settings" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneContact" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Supplier" FromRole="Suppliers" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionTypeID" Type="Int32" />
+    <Property Name="CurrencyExchange" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SenderID" Type="Int32" />
+    <Property Name="EndingBalanceSender" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ReceiverID" Type="Int32" />
+    <Property Name="EndingBalanceReceiver" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TotalAmount" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TotalDiscount" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TotalPaid" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Transaction_Receiver" FromRole="Transaction" ToRole="Users" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_Transaction_Sender" FromRole="Transaction" ToRole="Users" />
+    <NavigationProperty Name="TransactionType" Relationship="Self.FK_Transaction_TransactionType" FromRole="Transaction" ToRole="TransactionType" />
+    <NavigationProperty Name="TransactionCoupons" Relationship="Self.FK_TransactionCoupon_Transaction" FromRole="Transaction" ToRole="TransactionCoupon" />
+    <NavigationProperty Name="TransactionDetails" Relationship="Self.FK_TransactionDetail_Transaction" FromRole="Transaction" ToRole="TransactionDetails" />
+    <NavigationProperty Name="TransactionTransactionStatus" Relationship="Self.FK_TransactionTransactionStatus_Transaction" FromRole="Transaction" ToRole="TransactionTransactionStatus" />
+  </EntityType>
+  <EntityType Name="TransactionCoupon">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionID" Type="Int32" />
+    <Property Name="CouponID" Type="Int32" />
+    <NavigationProperty Name="Coupon" Relationship="Self.FK_TransactionCoupon_Coupon" FromRole="TransactionCoupon" ToRole="Coupons" />
+    <NavigationProperty Name="Transaction" Relationship="Self.FK_TransactionCoupon_Transaction" FromRole="TransactionCoupon" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="TransactionDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionID" Type="Int32" />
+    <Property Name="CurrencyExchange" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SupplierPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SelllingPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="TotalAmount" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TotalDiscount" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TotalPaid" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Transaction" Relationship="Self.FK_TransactionDetail_Transaction" FromRole="TransactionDetails" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="TransactionStatu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TransactionTransactionStatus" Relationship="Self.FK_TransactionTransactionStatus_TransactionStatus" FromRole="TransactionStatus" ToRole="TransactionTransactionStatus" />
+  </EntityType>
+  <EntityType Name="TransactionTransactionStatu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionID" Type="Int32" />
+    <Property Name="TransactionStatusID" Type="Int32" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="UserUpdate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FullNameUserUpdate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Transaction" Relationship="Self.FK_TransactionTransactionStatus_Transaction" FromRole="TransactionTransactionStatus" ToRole="Transaction" />
+    <NavigationProperty Name="TransactionStatu" Relationship="Self.FK_TransactionTransactionStatus_TransactionStatus" FromRole="TransactionTransactionStatus" ToRole="TransactionStatus" />
+  </EntityType>
+  <EntityType Name="TransactionType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK_Transaction_TransactionType" FromRole="TransactionType" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GUID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IdCardNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="GroupID" Type="Int32" />
+    <Property Name="TokenRegister" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ExpireTokenRegister" Type="DateTime" Precision="3" />
+    <Property Name="TokenLogin" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ExpireTokenLogin" Type="DateTime" Precision="3" />
+    <Property Name="TokenForgotPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ExpireTokenForgotPassword" Type="DateTime" Precision="3" />
+    <Property Name="TokenDevice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TokenAutoLogin" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsAppove" Type="Boolean" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="IsVerifyEmail" Type="Boolean" />
+    <Property Name="IsVerifyPhone" Type="Boolean" />
+    <Property Name="Balance" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Lat" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Lng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsBanned" Type="Boolean" />
+    <Property Name="DateBanned" Type="DateTime" Precision="3" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK_Transaction_Receiver" FromRole="Users" ToRole="Transaction" />
+    <NavigationProperty Name="Transactions1" Relationship="Self.FK_Transaction_Sender" FromRole="Users" ToRole="Transaction" />
+  </EntityType>
+  <Association Name="FK_Account_Group">
+    <End Role="Groups" Type="Self.Group" Multiplicity="0..1" />
+    <End Role="Accounts" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blogs_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Blogs" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Blogs">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Postlink_Blog">
+    <End Role="Blogs" Type="Self.Blog" Multiplicity="0..1" />
+    <End Role="Postlink" Type="Self.Postlink" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Blogs">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Postlink">
+        <PropertyRef Name="BlogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionCoupon_Coupon">
+    <End Role="Coupons" Type="Self.Coupon" Multiplicity="0..1" />
+    <End Role="TransactionCoupon" Type="Self.TransactionCoupon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coupons">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TransactionCoupon">
+        <PropertyRef Name="TransactionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Media">
+    <End Role="Media" Type="Self.Medium" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Media">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="MediaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Postlink_Product">
+    <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Postlink" Type="Self.Postlink" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Postlink">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ProductType">
+    <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="ProductTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Supplier">
+    <End Role="Suppliers" Type="Self.Supplier" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Suppliers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="SupplierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Settings_SettingGroup">
+    <End Role="SettingGroup" Type="Self.SettingGroup" Multiplicity="0..1" />
+    <End Role="Settings" Type="Self.Setting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SettingGroup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Settings">
+        <PropertyRef Name="SettingGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Settings_SettingType">
+    <End Role="SettingType" Type="Self.SettingType" Multiplicity="0..1" />
+    <End Role="Settings" Type="Self.Setting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SettingType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Settings">
+        <PropertyRef Name="SettingTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_Receiver">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="ReceiverID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_Sender">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="SenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_TransactionType">
+    <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="0..1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="TransactionTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionCoupon_Transaction">
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="0..1" />
+    <End Role="TransactionCoupon" Type="Self.TransactionCoupon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transaction">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TransactionCoupon">
+        <PropertyRef Name="TransactionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionDetail_Transaction">
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="0..1" />
+    <End Role="TransactionDetails" Type="Self.TransactionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transaction">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TransactionDetails">
+        <PropertyRef Name="TransactionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionTransactionStatus_Transaction">
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="0..1" />
+    <End Role="TransactionTransactionStatus" Type="Self.TransactionTransactionStatu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transaction">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TransactionTransactionStatus">
+        <PropertyRef Name="TransactionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionTransactionStatus_TransactionStatus">
+    <End Role="TransactionStatus" Type="Self.TransactionStatu" Multiplicity="0..1" />
+    <End Role="TransactionTransactionStatus" Type="Self.TransactionTransactionStatu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionStatus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TransactionTransactionStatus">
+        <PropertyRef Name="TransactionStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Account_Role">
+    <End Role="Accounts" Type="Self.Account" Multiplicity="*" />
+    <End Role="Roles" Type="Self.Role" Multiplicity="*" />
+  </Association>
+  <Association Name="CampaignCoupon">
+    <End Role="Campaigns" Type="Self.Campaign" Multiplicity="*" />
+    <End Role="Coupons" Type="Self.Coupon" Multiplicity="*" />
+  </Association>
+  <Association Name="Group_Role">
+    <End Role="Groups" Type="Self.Group" Multiplicity="*" />
+    <End Role="Roles" Type="Self.Role" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="CMSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="Blogs" EntityType="Self.Blog" />
+    <EntitySet Name="CampaignDetails" EntityType="Self.CampaignDetail" />
+    <EntitySet Name="Campaigns" EntityType="Self.Campaign" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="CouponDetails" EntityType="Self.CouponDetail" />
+    <EntitySet Name="Coupons" EntityType="Self.Coupon" />
+    <EntitySet Name="Groups" EntityType="Self.Group" />
+    <EntitySet Name="GroupUsers" EntityType="Self.GroupUser" />
+    <EntitySet Name="Languages" EntityType="Self.Language" />
+    <EntitySet Name="Media" EntityType="Self.Medium" />
+    <EntitySet Name="Payments" EntityType="Self.Payment" />
+    <EntitySet Name="Postlinks" EntityType="Self.Postlink" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="ProductTypes" EntityType="Self.ProductType" />
+    <EntitySet Name="Resources" EntityType="Self.Resource" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="SettingGroups" EntityType="Self.SettingGroup" />
+    <EntitySet Name="Settings" EntityType="Self.Setting" />
+    <EntitySet Name="SettingTypes" EntityType="Self.SettingType" />
+    <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+    <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+    <EntitySet Name="TransactionCoupons" EntityType="Self.TransactionCoupon" />
+    <EntitySet Name="TransactionDetails" EntityType="Self.TransactionDetail" />
+    <EntitySet Name="TransactionStatus" EntityType="Self.TransactionStatu" />
+    <EntitySet Name="TransactionTransactionStatus" EntityType="Self.TransactionTransactionStatu" />
+    <EntitySet Name="TransactionTypes" EntityType="Self.TransactionType" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Account_Group" Association="Self.FK_Account_Group">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blogs_Category" Association="Self.FK_Blogs_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Blogs" EntitySet="Blogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Postlink_Blog" Association="Self.FK_Postlink_Blog">
+      <End Role="Blogs" EntitySet="Blogs" />
+      <End Role="Postlink" EntitySet="Postlinks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionCoupon_Coupon" Association="Self.FK_TransactionCoupon_Coupon">
+      <End Role="Coupons" EntitySet="Coupons" />
+      <End Role="TransactionCoupon" EntitySet="TransactionCoupons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Media" Association="Self.FK_Product_Media">
+      <End Role="Media" EntitySet="Media" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Postlink_Product" Association="Self.FK_Postlink_Product">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Postlink" EntitySet="Postlinks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ProductType" Association="Self.FK_Product_ProductType">
+      <End Role="ProductType" EntitySet="ProductTypes" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Supplier" Association="Self.FK_Product_Supplier">
+      <End Role="Suppliers" EntitySet="Suppliers" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Settings_SettingGroup" Association="Self.FK_Settings_SettingGroup">
+      <End Role="SettingGroup" EntitySet="SettingGroups" />
+      <End Role="Settings" EntitySet="Settings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Settings_SettingType" Association="Self.FK_Settings_SettingType">
+      <End Role="SettingType" EntitySet="SettingTypes" />
+      <End Role="Settings" EntitySet="Settings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_Receiver" Association="Self.FK_Transaction_Receiver">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_Sender" Association="Self.FK_Transaction_Sender">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_TransactionType" Association="Self.FK_Transaction_TransactionType">
+      <End Role="TransactionType" EntitySet="TransactionTypes" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionCoupon_Transaction" Association="Self.FK_TransactionCoupon_Transaction">
+      <End Role="Transaction" EntitySet="Transactions" />
+      <End Role="TransactionCoupon" EntitySet="TransactionCoupons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionDetail_Transaction" Association="Self.FK_TransactionDetail_Transaction">
+      <End Role="Transaction" EntitySet="Transactions" />
+      <End Role="TransactionDetails" EntitySet="TransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionTransactionStatus_Transaction" Association="Self.FK_TransactionTransactionStatus_Transaction">
+      <End Role="Transaction" EntitySet="Transactions" />
+      <End Role="TransactionTransactionStatus" EntitySet="TransactionTransactionStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionTransactionStatus_TransactionStatus" Association="Self.FK_TransactionTransactionStatus_TransactionStatus">
+      <End Role="TransactionStatus" EntitySet="TransactionStatus" />
+      <End Role="TransactionTransactionStatus" EntitySet="TransactionTransactionStatus" />
+    </AssociationSet>
+    <AssociationSet Name="Account_Role" Association="Self.Account_Role">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="CampaignCoupon" Association="Self.CampaignCoupon">
+      <End Role="Campaigns" EntitySet="Campaigns" />
+      <End Role="Coupons" EntitySet="Coupons" />
+    </AssociationSet>
+    <AssociationSet Name="Group_Role" Association="Self.Group_Role">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

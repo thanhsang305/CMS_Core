@@ -1,0 +1,2043 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account_Role">
+          <Key>
+            <PropertyRef Name="AccountID" />
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GUID" Type="varchar" MaxLength="100" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Username" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="100" />
+          <Property Name="IdCardNumber" Type="varchar" MaxLength="100" />
+          <Property Name="GroupID" Type="int" />
+          <Property Name="TokenRegister" Type="varchar" MaxLength="100" />
+          <Property Name="ExpireTokenRegister" Type="datetime" />
+          <Property Name="TokenLogin" Type="varchar" MaxLength="100" />
+          <Property Name="ExpireTokenLogin" Type="datetime" />
+          <Property Name="TokenForgotPassword" Type="varchar" MaxLength="100" />
+          <Property Name="ExpireTokenForgotPassword" Type="datetime" />
+          <Property Name="IsAppove" Type="bit" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="IsVerifyEmail" Type="bit" />
+          <Property Name="IsVerifyPhone" Type="bit" />
+          <Property Name="IsBanned" Type="bit" />
+          <Property Name="DateBanned" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Blogs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Alias" Type="varchar" MaxLength="100" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Content" Type="ntext" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="100" />
+          <Property Name="Tags" Type="nvarchar" MaxLength="100" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="LanguageCode" Type="varchar" MaxLength="100" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DatePost" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CampaignCoupon">
+          <Key>
+            <PropertyRef Name="CampaignID" />
+            <PropertyRef Name="CouponID" />
+          </Key>
+          <Property Name="CampaignID" Type="int" Nullable="false" />
+          <Property Name="CouponID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CampaignDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CampaignID" Type="int" />
+        </EntityType>
+        <EntityType Name="Campaigns">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CampaignName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CampaignDescription" Type="nvarchar" MaxLength="100" />
+          <Property Name="CampaignContent" Type="ntext" />
+          <Property Name="Webkey" Type="varchar" MaxLength="100" />
+          <Property Name="ProductTypeApply" Type="varchar" MaxLength="100" />
+          <Property Name="ProductApply" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="LanguageCode" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CouponDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CouponID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="DateUsed" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Coupons">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Content" Type="ntext" />
+          <Property Name="Count" Type="int" />
+          <Property Name="CountPerUser" Type="int" />
+          <Property Name="Render" Type="bit" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="DateStart" Type="datetime" />
+          <Property Name="DateEnd" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="DateDeleted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Group_Role">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="LanguageCode" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="GroupUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="LanguageCode" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Languages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Icon" Type="varchar" MaxLength="100" />
+          <Property Name="CurrencyCode" Type="varchar" MaxLength="100" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="IsDefault" Type="bit" />
+        </EntityType>
+        <EntityType Name="Media">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="100" />
+          <Property Name="Url" Type="varchar" MaxLength="100" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PaymentDescription" Type="nvarchar(max)" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="ClientID" Type="varchar" MaxLength="100" />
+          <Property Name="SecretKey" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Postlink">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="BlogID" Type="int" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductTypeID" Type="int" />
+          <Property Name="SKU" Type="varchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Content" Type="text" />
+          <Property Name="HashTag" Type="nvarchar" MaxLength="100" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="100" />
+          <Property Name="SupplierPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SellingPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DiscountPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MediaID" Type="int" />
+          <Property Name="SupplierID" Type="int" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="BestSeller" Type="bit" />
+          <Property Name="Newest" Type="bit" />
+          <Property Name="LanguageCode" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="LanguageCode" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Resource">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Value" Type="nvarchar" MaxLength="100" />
+          <Property Name="LanguageCode" Type="varchar" MaxLength="100" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="LanguageCode" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SettingGroup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="LanguageCode" Type="varchar" MaxLength="100" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="SettingTypeID" Type="int" />
+          <Property Name="SettingGroupID" Type="int" />
+        </EntityType>
+        <EntityType Name="SettingType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="PhoneContact" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="LanguageCode" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionCode" Type="varchar" MaxLength="100" />
+          <Property Name="TransactionTypeID" Type="int" />
+          <Property Name="CurrencyExchange" Type="varchar" MaxLength="100" />
+          <Property Name="SenderID" Type="int" />
+          <Property Name="EndingBalanceSender" Type="varchar(max)" />
+          <Property Name="ReceiverID" Type="int" />
+          <Property Name="EndingBalanceReceiver" Type="varchar(max)" />
+          <Property Name="TotalAmount" Type="varchar(max)" />
+          <Property Name="TotalDiscount" Type="varchar(max)" />
+          <Property Name="TotalPaid" Type="varchar(max)" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TransactionCoupon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionID" Type="int" />
+          <Property Name="CouponID" Type="int" />
+        </EntityType>
+        <EntityType Name="TransactionDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionID" Type="int" />
+          <Property Name="CurrencyExchange" Type="varchar" MaxLength="100" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SupplierPrice" Type="varchar(max)" />
+          <Property Name="SelllingPrice" Type="varchar(max)" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="TotalAmount" Type="varchar(max)" />
+          <Property Name="TotalDiscount" Type="varchar(max)" />
+          <Property Name="TotalPaid" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="TransactionStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="LanguageCode" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TransactionTransactionStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionID" Type="int" />
+          <Property Name="TransactionStatusID" Type="int" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="UserUpdate" Type="varchar" MaxLength="100" />
+          <Property Name="FullNameUserUpdate" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="LanguageCode" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GUID" Type="varchar" MaxLength="100" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Username" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="100" />
+          <Property Name="IdCardNumber" Type="varchar" MaxLength="100" />
+          <Property Name="GroupID" Type="int" />
+          <Property Name="TokenRegister" Type="varchar" MaxLength="100" />
+          <Property Name="ExpireTokenRegister" Type="datetime" />
+          <Property Name="TokenLogin" Type="varchar" MaxLength="100" />
+          <Property Name="ExpireTokenLogin" Type="datetime" />
+          <Property Name="TokenForgotPassword" Type="varchar" MaxLength="100" />
+          <Property Name="ExpireTokenForgotPassword" Type="datetime" />
+          <Property Name="TokenDevice" Type="text" />
+          <Property Name="TokenAutoLogin" Type="text" />
+          <Property Name="IsAppove" Type="bit" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="IsVerifyEmail" Type="bit" />
+          <Property Name="IsVerifyPhone" Type="bit" />
+          <Property Name="Balance" Type="varchar" MaxLength="100" />
+          <Property Name="Lat" Type="varchar" MaxLength="100" />
+          <Property Name="Lng" Type="varchar" MaxLength="100" />
+          <Property Name="IsBanned" Type="bit" />
+          <Property Name="DateBanned" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Account_Group">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountRole_Account">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Account_Role" Type="Self.Account_Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Account_Role">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountRole_Role">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Account_Role" Type="Self.Account_Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Account_Role">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Blogs_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Blogs" Type="Self.Blogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Blogs">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CampaignCoupon_Campaign">
+          <End Role="Campaigns" Type="Self.Campaigns" Multiplicity="1" />
+          <End Role="CampaignCoupon" Type="Self.CampaignCoupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaigns">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CampaignCoupon">
+              <PropertyRef Name="CampaignID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CampaignCoupon_Coupon">
+          <End Role="Coupons" Type="Self.Coupons" Multiplicity="1" />
+          <End Role="CampaignCoupon" Type="Self.CampaignCoupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coupons">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CampaignCoupon">
+              <PropertyRef Name="CouponID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupRole_Group">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="Group_Role" Type="Self.Group_Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Group_Role">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupRole_Role">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Group_Role" Type="Self.Group_Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Group_Role">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Postlink_Blog">
+          <End Role="Blogs" Type="Self.Blogs" Multiplicity="0..1" />
+          <End Role="Postlink" Type="Self.Postlink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blogs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Postlink">
+              <PropertyRef Name="BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Postlink_Product">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="Postlink" Type="Self.Postlink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Postlink">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Media">
+          <End Role="Media" Type="Self.Media" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Media">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="MediaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductType">
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Supplier">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Settings_SettingGroup">
+          <End Role="SettingGroup" Type="Self.SettingGroup" Multiplicity="0..1" />
+          <End Role="Settings" Type="Self.Settings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SettingGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Settings">
+              <PropertyRef Name="SettingGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Settings_SettingType">
+          <End Role="SettingType" Type="Self.SettingType" Multiplicity="0..1" />
+          <End Role="Settings" Type="Self.Settings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SettingType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Settings">
+              <PropertyRef Name="SettingTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Receiver">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="ReceiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Sender">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="SenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_TransactionType">
+          <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="0..1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="TransactionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionCoupon_Coupon">
+          <End Role="Coupons" Type="Self.Coupons" Multiplicity="0..1" />
+          <End Role="TransactionCoupon" Type="Self.TransactionCoupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coupons">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionCoupon">
+              <PropertyRef Name="TransactionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionCoupon_Transaction">
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="0..1" />
+          <End Role="TransactionCoupon" Type="Self.TransactionCoupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionCoupon">
+              <PropertyRef Name="TransactionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionDetail_Transaction">
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="0..1" />
+          <End Role="TransactionDetails" Type="Self.TransactionDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionDetails">
+              <PropertyRef Name="TransactionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionTransactionStatus_Transaction">
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="0..1" />
+          <End Role="TransactionTransactionStatus" Type="Self.TransactionTransactionStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionTransactionStatus">
+              <PropertyRef Name="TransactionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionTransactionStatus_TransactionStatus">
+          <End Role="TransactionStatus" Type="Self.TransactionStatus" Multiplicity="0..1" />
+          <End Role="TransactionTransactionStatus" Type="Self.TransactionTransactionStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionTransactionStatus">
+              <PropertyRef Name="TransactionStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CMSModelStoreContainer">
+          <EntitySet Name="Account_Role" EntityType="Self.Account_Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Blogs" EntityType="Self.Blogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CampaignCoupon" EntityType="Self.CampaignCoupon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CampaignDetails" EntityType="Self.CampaignDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Campaigns" EntityType="Self.Campaigns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CouponDetail" EntityType="Self.CouponDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coupons" EntityType="Self.Coupons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group_Role" EntityType="Self.Group_Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupUser" EntityType="Self.GroupUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Languages" EntityType="Self.Languages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Media" EntityType="Self.Media" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Postlink" EntityType="Self.Postlink" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Resource" EntityType="Self.Resource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SettingGroup" EntityType="Self.SettingGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SettingType" EntityType="Self.SettingType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionCoupon" EntityType="Self.TransactionCoupon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionDetails" EntityType="Self.TransactionDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionStatus" EntityType="Self.TransactionStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionTransactionStatus" EntityType="Self.TransactionTransactionStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Account_Group" Association="Self.FK_Account_Group">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountRole_Account" Association="Self.FK_AccountRole_Account">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Account_Role" EntitySet="Account_Role" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountRole_Role" Association="Self.FK_AccountRole_Role">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Account_Role" EntitySet="Account_Role" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Blogs_Category" Association="Self.FK_Blogs_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Blogs" EntitySet="Blogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CampaignCoupon_Campaign" Association="Self.FK_CampaignCoupon_Campaign">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="CampaignCoupon" EntitySet="CampaignCoupon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CampaignCoupon_Coupon" Association="Self.FK_CampaignCoupon_Coupon">
+            <End Role="Coupons" EntitySet="Coupons" />
+            <End Role="CampaignCoupon" EntitySet="CampaignCoupon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupRole_Group" Association="Self.FK_GroupRole_Group">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Group_Role" EntitySet="Group_Role" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupRole_Role" Association="Self.FK_GroupRole_Role">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Group_Role" EntitySet="Group_Role" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Postlink_Blog" Association="Self.FK_Postlink_Blog">
+            <End Role="Blogs" EntitySet="Blogs" />
+            <End Role="Postlink" EntitySet="Postlink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Postlink_Product" Association="Self.FK_Postlink_Product">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Postlink" EntitySet="Postlink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Media" Association="Self.FK_Product_Media">
+            <End Role="Media" EntitySet="Media" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductType" Association="Self.FK_Product_ProductType">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Supplier" Association="Self.FK_Product_Supplier">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Settings_SettingGroup" Association="Self.FK_Settings_SettingGroup">
+            <End Role="SettingGroup" EntitySet="SettingGroup" />
+            <End Role="Settings" EntitySet="Settings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Settings_SettingType" Association="Self.FK_Settings_SettingType">
+            <End Role="SettingType" EntitySet="SettingType" />
+            <End Role="Settings" EntitySet="Settings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Receiver" Association="Self.FK_Transaction_Receiver">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Sender" Association="Self.FK_Transaction_Sender">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_TransactionType" Association="Self.FK_Transaction_TransactionType">
+            <End Role="TransactionType" EntitySet="TransactionType" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionCoupon_Coupon" Association="Self.FK_TransactionCoupon_Coupon">
+            <End Role="Coupons" EntitySet="Coupons" />
+            <End Role="TransactionCoupon" EntitySet="TransactionCoupon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionCoupon_Transaction" Association="Self.FK_TransactionCoupon_Transaction">
+            <End Role="Transaction" EntitySet="Transaction" />
+            <End Role="TransactionCoupon" EntitySet="TransactionCoupon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionDetail_Transaction" Association="Self.FK_TransactionDetail_Transaction">
+            <End Role="Transaction" EntitySet="Transaction" />
+            <End Role="TransactionDetails" EntitySet="TransactionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionTransactionStatus_Transaction" Association="Self.FK_TransactionTransactionStatus_Transaction">
+            <End Role="Transaction" EntitySet="Transaction" />
+            <End Role="TransactionTransactionStatus" EntitySet="TransactionTransactionStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionTransactionStatus_TransactionStatus" Association="Self.FK_TransactionTransactionStatus_TransactionStatus">
+            <End Role="TransactionStatus" EntitySet="TransactionStatus" />
+            <End Role="TransactionTransactionStatus" EntitySet="TransactionTransactionStatus" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GUID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdCardNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GroupID" Type="Int32" />
+          <Property Name="TokenRegister" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ExpireTokenRegister" Type="DateTime" Precision="3" />
+          <Property Name="TokenLogin" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ExpireTokenLogin" Type="DateTime" Precision="3" />
+          <Property Name="TokenForgotPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ExpireTokenForgotPassword" Type="DateTime" Precision="3" />
+          <Property Name="IsAppove" Type="Boolean" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="IsVerifyEmail" Type="Boolean" />
+          <Property Name="IsVerifyPhone" Type="Boolean" />
+          <Property Name="IsBanned" Type="Boolean" />
+          <Property Name="DateBanned" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_Account_Group" FromRole="Accounts" ToRole="Groups" />
+          <NavigationProperty Name="Roles" Relationship="Self.Account_Role" FromRole="Accounts" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Alias" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Tags" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="DatePost" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Blogs_Category" FromRole="Blogs" ToRole="Category" />
+          <NavigationProperty Name="Postlinks" Relationship="Self.FK_Postlink_Blog" FromRole="Blogs" ToRole="Postlink" />
+        </EntityType>
+        <EntityType Name="CampaignDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CampaignID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Campaign">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CampaignName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CampaignDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CampaignContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Webkey" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProductTypeApply" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProductApply" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Coupons" Relationship="Self.CampaignCoupon" FromRole="Campaigns" ToRole="Coupons" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Blogs" Relationship="Self.FK_Blogs_Category" FromRole="Category" ToRole="Blogs" />
+        </EntityType>
+        <EntityType Name="CouponDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CouponID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="DateUsed" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Coupon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="CountPerUser" Type="Int32" />
+          <Property Name="Render" Type="Boolean" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateStart" Type="DateTime" Precision="3" />
+          <Property Name="DateEnd" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TransactionCoupons" Relationship="Self.FK_TransactionCoupon_Coupon" FromRole="Coupons" ToRole="TransactionCoupon" />
+          <NavigationProperty Name="Campaigns" Relationship="Self.CampaignCoupon" FromRole="Coupons" ToRole="Campaigns" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Group" FromRole="Groups" ToRole="Accounts" />
+          <NavigationProperty Name="Roles" Relationship="Self.Group_Role" FromRole="Groups" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="GroupUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="IsDefault" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Medium">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Media" FromRole="Media" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="ClientID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SecretKey" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Postlink">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="BlogID" Type="Int32" />
+          <NavigationProperty Name="Blog" Relationship="Self.FK_Postlink_Blog" FromRole="Postlink" ToRole="Blogs" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Postlink_Product" FromRole="Postlink" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductTypeID" Type="Int32" />
+          <Property Name="SKU" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ShortDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HashTag" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SupplierPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SellingPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DiscountPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MediaID" Type="Int32" />
+          <Property Name="SupplierID" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="BestSeller" Type="Boolean" />
+          <Property Name="Newest" Type="Boolean" />
+          <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Medium" Relationship="Self.FK_Product_Media" FromRole="Products" ToRole="Media" />
+          <NavigationProperty Name="Postlinks" Relationship="Self.FK_Postlink_Product" FromRole="Products" ToRole="Postlink" />
+          <NavigationProperty Name="ProductType" Relationship="Self.FK_Product_ProductType" FromRole="Products" ToRole="ProductType" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_Product_Supplier" FromRole="Products" ToRole="Suppliers" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Product_ProductType" FromRole="ProductType" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Resource">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.Account_Role" FromRole="Roles" ToRole="Accounts" />
+          <NavigationProperty Name="Groups" Relationship="Self.Group_Role" FromRole="Roles" ToRole="Groups" />
+        </EntityType>
+        <EntityType Name="SettingGroup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Settings" Relationship="Self.FK_Settings_SettingGroup" FromRole="SettingGroup" ToRole="Settings" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="SettingTypeID" Type="Int32" />
+          <Property Name="SettingGroupID" Type="Int32" />
+          <NavigationProperty Name="SettingGroup" Relationship="Self.FK_Settings_SettingGroup" FromRole="Settings" ToRole="SettingGroup" />
+          <NavigationProperty Name="SettingType" Relationship="Self.FK_Settings_SettingType" FromRole="Settings" ToRole="SettingType" />
+        </EntityType>
+        <EntityType Name="SettingType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Settings" Relationship="Self.FK_Settings_SettingType" FromRole="SettingType" ToRole="Settings" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneContact" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Supplier" FromRole="Suppliers" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionTypeID" Type="Int32" />
+          <Property Name="CurrencyExchange" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SenderID" Type="Int32" />
+          <Property Name="EndingBalanceSender" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ReceiverID" Type="Int32" />
+          <Property Name="EndingBalanceReceiver" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TotalAmount" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TotalDiscount" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TotalPaid" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Transaction_Receiver" FromRole="Transaction" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Transaction_Sender" FromRole="Transaction" ToRole="Users" />
+          <NavigationProperty Name="TransactionType" Relationship="Self.FK_Transaction_TransactionType" FromRole="Transaction" ToRole="TransactionType" />
+          <NavigationProperty Name="TransactionCoupons" Relationship="Self.FK_TransactionCoupon_Transaction" FromRole="Transaction" ToRole="TransactionCoupon" />
+          <NavigationProperty Name="TransactionDetails" Relationship="Self.FK_TransactionDetail_Transaction" FromRole="Transaction" ToRole="TransactionDetails" />
+          <NavigationProperty Name="TransactionTransactionStatus" Relationship="Self.FK_TransactionTransactionStatus_Transaction" FromRole="Transaction" ToRole="TransactionTransactionStatus" />
+        </EntityType>
+        <EntityType Name="TransactionCoupon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionID" Type="Int32" />
+          <Property Name="CouponID" Type="Int32" />
+          <NavigationProperty Name="Coupon" Relationship="Self.FK_TransactionCoupon_Coupon" FromRole="TransactionCoupon" ToRole="Coupons" />
+          <NavigationProperty Name="Transaction" Relationship="Self.FK_TransactionCoupon_Transaction" FromRole="TransactionCoupon" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="TransactionDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionID" Type="Int32" />
+          <Property Name="CurrencyExchange" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SupplierPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SelllingPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="TotalAmount" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TotalDiscount" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TotalPaid" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Transaction" Relationship="Self.FK_TransactionDetail_Transaction" FromRole="TransactionDetails" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="TransactionStatu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TransactionTransactionStatus" Relationship="Self.FK_TransactionTransactionStatus_TransactionStatus" FromRole="TransactionStatus" ToRole="TransactionTransactionStatus" />
+        </EntityType>
+        <EntityType Name="TransactionTransactionStatu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionID" Type="Int32" />
+          <Property Name="TransactionStatusID" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="UserUpdate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FullNameUserUpdate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Transaction" Relationship="Self.FK_TransactionTransactionStatus_Transaction" FromRole="TransactionTransactionStatus" ToRole="Transaction" />
+          <NavigationProperty Name="TransactionStatu" Relationship="Self.FK_TransactionTransactionStatus_TransactionStatus" FromRole="TransactionTransactionStatus" ToRole="TransactionStatus" />
+        </EntityType>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="LanguageCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Transactions" Relationship="Self.FK_Transaction_TransactionType" FromRole="TransactionType" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GUID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdCardNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GroupID" Type="Int32" />
+          <Property Name="TokenRegister" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ExpireTokenRegister" Type="DateTime" Precision="3" />
+          <Property Name="TokenLogin" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ExpireTokenLogin" Type="DateTime" Precision="3" />
+          <Property Name="TokenForgotPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ExpireTokenForgotPassword" Type="DateTime" Precision="3" />
+          <Property Name="TokenDevice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TokenAutoLogin" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsAppove" Type="Boolean" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="IsVerifyEmail" Type="Boolean" />
+          <Property Name="IsVerifyPhone" Type="Boolean" />
+          <Property Name="Balance" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Lat" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Lng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsBanned" Type="Boolean" />
+          <Property Name="DateBanned" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Transactions" Relationship="Self.FK_Transaction_Receiver" FromRole="Users" ToRole="Transaction" />
+          <NavigationProperty Name="Transactions1" Relationship="Self.FK_Transaction_Sender" FromRole="Users" ToRole="Transaction" />
+        </EntityType>
+        <Association Name="FK_Account_Group">
+          <End Role="Groups" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Accounts" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Blogs_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Blogs" Type="Self.Blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Blogs">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Postlink_Blog">
+          <End Role="Blogs" Type="Self.Blog" Multiplicity="0..1" />
+          <End Role="Postlink" Type="Self.Postlink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blogs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Postlink">
+              <PropertyRef Name="BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionCoupon_Coupon">
+          <End Role="Coupons" Type="Self.Coupon" Multiplicity="0..1" />
+          <End Role="TransactionCoupon" Type="Self.TransactionCoupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coupons">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionCoupon">
+              <PropertyRef Name="TransactionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Media">
+          <End Role="Media" Type="Self.Medium" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Media">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="MediaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Postlink_Product">
+          <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Postlink" Type="Self.Postlink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Postlink">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductType">
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Supplier">
+          <End Role="Suppliers" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Settings_SettingGroup">
+          <End Role="SettingGroup" Type="Self.SettingGroup" Multiplicity="0..1" />
+          <End Role="Settings" Type="Self.Setting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SettingGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Settings">
+              <PropertyRef Name="SettingGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Settings_SettingType">
+          <End Role="SettingType" Type="Self.SettingType" Multiplicity="0..1" />
+          <End Role="Settings" Type="Self.Setting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SettingType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Settings">
+              <PropertyRef Name="SettingTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Receiver">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="ReceiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Sender">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="SenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_TransactionType">
+          <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="0..1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="TransactionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionCoupon_Transaction">
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="0..1" />
+          <End Role="TransactionCoupon" Type="Self.TransactionCoupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionCoupon">
+              <PropertyRef Name="TransactionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionDetail_Transaction">
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="0..1" />
+          <End Role="TransactionDetails" Type="Self.TransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionDetails">
+              <PropertyRef Name="TransactionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionTransactionStatus_Transaction">
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="0..1" />
+          <End Role="TransactionTransactionStatus" Type="Self.TransactionTransactionStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionTransactionStatus">
+              <PropertyRef Name="TransactionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionTransactionStatus_TransactionStatus">
+          <End Role="TransactionStatus" Type="Self.TransactionStatu" Multiplicity="0..1" />
+          <End Role="TransactionTransactionStatus" Type="Self.TransactionTransactionStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionTransactionStatus">
+              <PropertyRef Name="TransactionStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Account_Role">
+          <End Role="Accounts" Type="Self.Account" Multiplicity="*" />
+          <End Role="Roles" Type="Self.Role" Multiplicity="*" />
+        </Association>
+        <Association Name="CampaignCoupon">
+          <End Role="Campaigns" Type="Self.Campaign" Multiplicity="*" />
+          <End Role="Coupons" Type="Self.Coupon" Multiplicity="*" />
+        </Association>
+        <Association Name="Group_Role">
+          <End Role="Groups" Type="Self.Group" Multiplicity="*" />
+          <End Role="Roles" Type="Self.Role" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="CMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Blogs" EntityType="Self.Blog" />
+          <EntitySet Name="CampaignDetails" EntityType="Self.CampaignDetail" />
+          <EntitySet Name="Campaigns" EntityType="Self.Campaign" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="CouponDetails" EntityType="Self.CouponDetail" />
+          <EntitySet Name="Coupons" EntityType="Self.Coupon" />
+          <EntitySet Name="Groups" EntityType="Self.Group" />
+          <EntitySet Name="GroupUsers" EntityType="Self.GroupUser" />
+          <EntitySet Name="Languages" EntityType="Self.Language" />
+          <EntitySet Name="Media" EntityType="Self.Medium" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="Postlinks" EntityType="Self.Postlink" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="ProductTypes" EntityType="Self.ProductType" />
+          <EntitySet Name="Resources" EntityType="Self.Resource" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="SettingGroups" EntityType="Self.SettingGroup" />
+          <EntitySet Name="Settings" EntityType="Self.Setting" />
+          <EntitySet Name="SettingTypes" EntityType="Self.SettingType" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+          <EntitySet Name="TransactionCoupons" EntityType="Self.TransactionCoupon" />
+          <EntitySet Name="TransactionDetails" EntityType="Self.TransactionDetail" />
+          <EntitySet Name="TransactionStatus" EntityType="Self.TransactionStatu" />
+          <EntitySet Name="TransactionTransactionStatus" EntityType="Self.TransactionTransactionStatu" />
+          <EntitySet Name="TransactionTypes" EntityType="Self.TransactionType" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Account_Group" Association="Self.FK_Account_Group">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Blogs_Category" Association="Self.FK_Blogs_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Blogs" EntitySet="Blogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Postlink_Blog" Association="Self.FK_Postlink_Blog">
+            <End Role="Blogs" EntitySet="Blogs" />
+            <End Role="Postlink" EntitySet="Postlinks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionCoupon_Coupon" Association="Self.FK_TransactionCoupon_Coupon">
+            <End Role="Coupons" EntitySet="Coupons" />
+            <End Role="TransactionCoupon" EntitySet="TransactionCoupons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Media" Association="Self.FK_Product_Media">
+            <End Role="Media" EntitySet="Media" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Postlink_Product" Association="Self.FK_Postlink_Product">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Postlink" EntitySet="Postlinks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductType" Association="Self.FK_Product_ProductType">
+            <End Role="ProductType" EntitySet="ProductTypes" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Supplier" Association="Self.FK_Product_Supplier">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Settings_SettingGroup" Association="Self.FK_Settings_SettingGroup">
+            <End Role="SettingGroup" EntitySet="SettingGroups" />
+            <End Role="Settings" EntitySet="Settings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Settings_SettingType" Association="Self.FK_Settings_SettingType">
+            <End Role="SettingType" EntitySet="SettingTypes" />
+            <End Role="Settings" EntitySet="Settings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Receiver" Association="Self.FK_Transaction_Receiver">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Sender" Association="Self.FK_Transaction_Sender">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_TransactionType" Association="Self.FK_Transaction_TransactionType">
+            <End Role="TransactionType" EntitySet="TransactionTypes" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionCoupon_Transaction" Association="Self.FK_TransactionCoupon_Transaction">
+            <End Role="Transaction" EntitySet="Transactions" />
+            <End Role="TransactionCoupon" EntitySet="TransactionCoupons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionDetail_Transaction" Association="Self.FK_TransactionDetail_Transaction">
+            <End Role="Transaction" EntitySet="Transactions" />
+            <End Role="TransactionDetails" EntitySet="TransactionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionTransactionStatus_Transaction" Association="Self.FK_TransactionTransactionStatus_Transaction">
+            <End Role="Transaction" EntitySet="Transactions" />
+            <End Role="TransactionTransactionStatus" EntitySet="TransactionTransactionStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionTransactionStatus_TransactionStatus" Association="Self.FK_TransactionTransactionStatus_TransactionStatus">
+            <End Role="TransactionStatus" EntitySet="TransactionStatus" />
+            <End Role="TransactionTransactionStatus" EntitySet="TransactionTransactionStatus" />
+          </AssociationSet>
+          <AssociationSet Name="Account_Role" Association="Self.Account_Role">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Roles" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="CampaignCoupon" Association="Self.CampaignCoupon">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="Coupons" EntitySet="Coupons" />
+          </AssociationSet>
+          <AssociationSet Name="Group_Role" Association="Self.Group_Role">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Roles" EntitySet="Roles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CMSModelStoreContainer" CdmEntityContainer="CMSEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="CMSModel.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="IdCardNumber" ColumnName="IdCardNumber" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="TokenRegister" ColumnName="TokenRegister" />
+                <ScalarProperty Name="ExpireTokenRegister" ColumnName="ExpireTokenRegister" />
+                <ScalarProperty Name="TokenLogin" ColumnName="TokenLogin" />
+                <ScalarProperty Name="ExpireTokenLogin" ColumnName="ExpireTokenLogin" />
+                <ScalarProperty Name="TokenForgotPassword" ColumnName="TokenForgotPassword" />
+                <ScalarProperty Name="ExpireTokenForgotPassword" ColumnName="ExpireTokenForgotPassword" />
+                <ScalarProperty Name="IsAppove" ColumnName="IsAppove" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="IsVerifyEmail" ColumnName="IsVerifyEmail" />
+                <ScalarProperty Name="IsVerifyPhone" ColumnName="IsVerifyPhone" />
+                <ScalarProperty Name="IsBanned" ColumnName="IsBanned" />
+                <ScalarProperty Name="DateBanned" ColumnName="DateBanned" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Blogs">
+            <EntityTypeMapping TypeName="CMSModel.Blog">
+              <MappingFragment StoreEntitySet="Blogs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Alias" ColumnName="Alias" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DatePost" ColumnName="DatePost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CampaignDetails">
+            <EntityTypeMapping TypeName="CMSModel.CampaignDetail">
+              <MappingFragment StoreEntitySet="CampaignDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Campaigns">
+            <EntityTypeMapping TypeName="CMSModel.Campaign">
+              <MappingFragment StoreEntitySet="Campaigns">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CampaignName" ColumnName="CampaignName" />
+                <ScalarProperty Name="CampaignDescription" ColumnName="CampaignDescription" />
+                <ScalarProperty Name="CampaignContent" ColumnName="CampaignContent" />
+                <ScalarProperty Name="Webkey" ColumnName="Webkey" />
+                <ScalarProperty Name="ProductTypeApply" ColumnName="ProductTypeApply" />
+                <ScalarProperty Name="ProductApply" ColumnName="ProductApply" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="CMSModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CouponDetails">
+            <EntityTypeMapping TypeName="CMSModel.CouponDetail">
+              <MappingFragment StoreEntitySet="CouponDetail">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CouponID" ColumnName="CouponID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DateUsed" ColumnName="DateUsed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coupons">
+            <EntityTypeMapping TypeName="CMSModel.Coupon">
+              <MappingFragment StoreEntitySet="Coupons">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="CountPerUser" ColumnName="CountPerUser" />
+                <ScalarProperty Name="Render" ColumnName="Render" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="CMSModel.Group">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupUsers">
+            <EntityTypeMapping TypeName="CMSModel.GroupUser">
+              <MappingFragment StoreEntitySet="GroupUser">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="CMSModel.Language">
+              <MappingFragment StoreEntitySet="Languages">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Media">
+            <EntityTypeMapping TypeName="CMSModel.Medium">
+              <MappingFragment StoreEntitySet="Media">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="CMSModel.Payment">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PaymentName" ColumnName="PaymentName" />
+                <ScalarProperty Name="PaymentDescription" ColumnName="PaymentDescription" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="SecretKey" ColumnName="SecretKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Postlinks">
+            <EntityTypeMapping TypeName="CMSModel.Postlink">
+              <MappingFragment StoreEntitySet="Postlink">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="CMSModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="HashTag" ColumnName="HashTag" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="SupplierPrice" ColumnName="SupplierPrice" />
+                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+                <ScalarProperty Name="DiscountPrice" ColumnName="DiscountPrice" />
+                <ScalarProperty Name="MediaID" ColumnName="MediaID" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="BestSeller" ColumnName="BestSeller" />
+                <ScalarProperty Name="Newest" ColumnName="Newest" />
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypes">
+            <EntityTypeMapping TypeName="CMSModel.ProductType">
+              <MappingFragment StoreEntitySet="ProductType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Resources">
+            <EntityTypeMapping TypeName="CMSModel.Resource">
+              <MappingFragment StoreEntitySet="Resource">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="CMSModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SettingGroups">
+            <EntityTypeMapping TypeName="CMSModel.SettingGroup">
+              <MappingFragment StoreEntitySet="SettingGroup">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="CMSModel.Setting">
+              <MappingFragment StoreEntitySet="Settings">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="SettingTypeID" ColumnName="SettingTypeID" />
+                <ScalarProperty Name="SettingGroupID" ColumnName="SettingGroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SettingTypes">
+            <EntityTypeMapping TypeName="CMSModel.SettingType">
+              <MappingFragment StoreEntitySet="SettingType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="CMSModel.Supplier">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhoneContact" ColumnName="PhoneContact" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="CMSModel.Transaction">
+              <MappingFragment StoreEntitySet="Transaction">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TransactionCode" ColumnName="TransactionCode" />
+                <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
+                <ScalarProperty Name="CurrencyExchange" ColumnName="CurrencyExchange" />
+                <ScalarProperty Name="SenderID" ColumnName="SenderID" />
+                <ScalarProperty Name="EndingBalanceSender" ColumnName="EndingBalanceSender" />
+                <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
+                <ScalarProperty Name="EndingBalanceReceiver" ColumnName="EndingBalanceReceiver" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="TotalDiscount" ColumnName="TotalDiscount" />
+                <ScalarProperty Name="TotalPaid" ColumnName="TotalPaid" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionCoupons">
+            <EntityTypeMapping TypeName="CMSModel.TransactionCoupon">
+              <MappingFragment StoreEntitySet="TransactionCoupon">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="CouponID" ColumnName="CouponID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionDetails">
+            <EntityTypeMapping TypeName="CMSModel.TransactionDetail">
+              <MappingFragment StoreEntitySet="TransactionDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="CurrencyExchange" ColumnName="CurrencyExchange" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="SupplierPrice" ColumnName="SupplierPrice" />
+                <ScalarProperty Name="SelllingPrice" ColumnName="SelllingPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="TotalDiscount" ColumnName="TotalDiscount" />
+                <ScalarProperty Name="TotalPaid" ColumnName="TotalPaid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionStatus">
+            <EntityTypeMapping TypeName="CMSModel.TransactionStatu">
+              <MappingFragment StoreEntitySet="TransactionStatus">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionTransactionStatus">
+            <EntityTypeMapping TypeName="CMSModel.TransactionTransactionStatu">
+              <MappingFragment StoreEntitySet="TransactionTransactionStatus">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="TransactionStatusID" ColumnName="TransactionStatusID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserUpdate" ColumnName="UserUpdate" />
+                <ScalarProperty Name="FullNameUserUpdate" ColumnName="FullNameUserUpdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionTypes">
+            <EntityTypeMapping TypeName="CMSModel.TransactionType">
+              <MappingFragment StoreEntitySet="TransactionType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CMSModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="IdCardNumber" ColumnName="IdCardNumber" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="TokenRegister" ColumnName="TokenRegister" />
+                <ScalarProperty Name="ExpireTokenRegister" ColumnName="ExpireTokenRegister" />
+                <ScalarProperty Name="TokenLogin" ColumnName="TokenLogin" />
+                <ScalarProperty Name="ExpireTokenLogin" ColumnName="ExpireTokenLogin" />
+                <ScalarProperty Name="TokenForgotPassword" ColumnName="TokenForgotPassword" />
+                <ScalarProperty Name="ExpireTokenForgotPassword" ColumnName="ExpireTokenForgotPassword" />
+                <ScalarProperty Name="TokenDevice" ColumnName="TokenDevice" />
+                <ScalarProperty Name="TokenAutoLogin" ColumnName="TokenAutoLogin" />
+                <ScalarProperty Name="IsAppove" ColumnName="IsAppove" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="IsVerifyEmail" ColumnName="IsVerifyEmail" />
+                <ScalarProperty Name="IsVerifyPhone" ColumnName="IsVerifyPhone" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Lng" ColumnName="Lng" />
+                <ScalarProperty Name="IsBanned" ColumnName="IsBanned" />
+                <ScalarProperty Name="DateBanned" ColumnName="DateBanned" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Account_Role" TypeName="CMSModel.Account_Role" StoreEntitySet="Account_Role">
+            <EndProperty Name="Accounts">
+              <ScalarProperty Name="ID" ColumnName="AccountID" />
+            </EndProperty>
+            <EndProperty Name="Roles">
+              <ScalarProperty Name="ID" ColumnName="RoleID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="CampaignCoupon" TypeName="CMSModel.CampaignCoupon" StoreEntitySet="CampaignCoupon">
+            <EndProperty Name="Campaigns">
+              <ScalarProperty Name="ID" ColumnName="CampaignID" />
+            </EndProperty>
+            <EndProperty Name="Coupons">
+              <ScalarProperty Name="ID" ColumnName="CouponID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Group_Role" TypeName="CMSModel.Group_Role" StoreEntitySet="Group_Role">
+            <EndProperty Name="Groups">
+              <ScalarProperty Name="ID" ColumnName="GroupID" />
+            </EndProperty>
+            <EndProperty Name="Roles">
+              <ScalarProperty Name="ID" ColumnName="RoleID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

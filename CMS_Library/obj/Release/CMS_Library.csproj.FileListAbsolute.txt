@@ -1,0 +1,15 @@
+E:\My Projects\CMS\CMS_Library\bin\Release\CMS_Library.dll.config
+E:\My Projects\CMS\CMS_Library\bin\Release\CMS_Library.dll
+E:\My Projects\CMS\CMS_Library\bin\Release\CMS_Library.pdb
+E:\My Projects\CMS\CMS_Library\bin\Release\EntityFramework.dll
+E:\My Projects\CMS\CMS_Library\bin\Release\EntityFramework.SqlServer.dll
+E:\My Projects\CMS\CMS_Library\bin\Release\Newtonsoft.Json.dll
+E:\My Projects\CMS\CMS_Library\bin\Release\EntityFramework.xml
+E:\My Projects\CMS\CMS_Library\bin\Release\EntityFramework.SqlServer.xml
+E:\My Projects\CMS\CMS_Library\bin\Release\Newtonsoft.Json.pdb
+E:\My Projects\CMS\CMS_Library\bin\Release\Newtonsoft.Json.xml
+E:\My Projects\CMS\CMS_Library\obj\Release\CMS_Library.csprojAssemblyReference.cache
+E:\My Projects\CMS\CMS_Library\obj\Release\CMS_Library.csproj.CoreCompileInputs.cache
+E:\My Projects\CMS\CMS_Library\obj\Release\CMS_Library.csproj.CopyComplete
+E:\My Projects\CMS\CMS_Library\obj\Release\CMS_Library.dll
+E:\My Projects\CMS\CMS_Library\obj\Release\CMS_Library.pdb
