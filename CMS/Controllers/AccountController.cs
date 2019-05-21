@@ -9,7 +9,7 @@ using System.Web.Http;
 namespace CMS.Controllers
 {
     /// <summary>
-    /// Tài khoản quan trị viên
+    /// Tài khoản quản trị viên
     /// </summary>
     public class AccountController : BaseApiController
     {

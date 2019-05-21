@@ -8,6 +8,9 @@ using System.Web.Http;
 
 namespace CMS.Controllers
 {
+    /// <summary>
+    /// Loại sản phẩm
+    /// </summary>
     public class ProductTypeController : BaseApiController
     {
         VM_ProductType prodType = new VM_ProductType();

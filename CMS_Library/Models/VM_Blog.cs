@@ -7,6 +7,17 @@ using System.Threading.Tasks;
 
 namespace CMS_Library.Models
 {
+    public class Res_Blog
+    {
+        public int ID { get; set; }
+        public string Alias { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Thumbnail { get; set; }
+        public string Tags { get; set; }
+        public Boolean Active { get; set; }
+        public string CategoryName { get; set; }
+    }
     public class VM_Blog
     {
         public int ID { get; set; }
@@ -21,7 +32,55 @@ namespace CMS_Library.Models
         public DateTime DateCreated { get; set; }
         public DateTime DatePost { get; set; }
 
-        public string Create(VM_Blog item)
+        public List<Res_Blog> GetList()
+        {
+            try
+            {
+                using (CMSEntities _context = new CMSEntities())
+                {
+                    return _context.Blogs.Select(y => new Res_Blog
+                    {
+                        Active = (Boolean)y.Active,
+                        Alias = y.Alias,
+                        CategoryName = y.Category.Name,
+                        Description = y.Description,
+                        ID = y.ID,
+                        Tags = y.Tags,
+                        Thumbnail = y.Thumbnail,
+                        Title = y.Title
+                    }).ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public Res_Blog Get(string Alias)
+        {
+            try
+            {
+                using (CMSEntities _context = new CMSEntities())
+                {
+                    return _context.Blogs.Where(x => x.Alias.Equals(Alias)).Select(y => new Res_Blog
+                    {
+                        Active = (Boolean)y.Active,
+                        Alias = y.Alias,
+                        CategoryName = y.Category.Name,
+                        Description = y.Description,
+                        ID = y.ID,
+                        Tags = y.Tags,
+                        Thumbnail = y.Thumbnail,
+                        Title = y.Title
+                    }).SingleOrDefault();
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public Res_Blog Create(VM_Blog item)
         {
             try
             {
@@ -40,50 +99,70 @@ namespace CMS_Library.Models
                         blog.CategoryID = item.CategoryID;
                         _context.Blogs.Add(blog);
                         _context.SaveChanges();
-                        return CommonConst.SUCCESS;
+                        return _context.Blogs.Where(x => x.Alias.Equals(item.Alias)).Select(y => new Res_Blog
+                        {
+                            Active = (Boolean)y.Active,
+                            Alias = y.Alias,
+                            CategoryName = y.Category.Name,
+                            Description = y.Description,
+                            ID = y.ID,
+                            Tags = y.Tags,
+                            Thumbnail = y.Thumbnail,
+                            Title = y.Title
+                        }).SingleOrDefault();
                     }
                     else
                     {
-                        return CommonConst.EXISTS;
+                        return null;
                     }
                 }
             }
             catch (Exception e)
             {
-                return CommonConst.ERROR;
+                return null;
             }
         }
 
-        public string Update(VM_Blog item)
+        public Res_Blog Update(string Alias, VM_Blog item)
         {
             try
             {
                 using (CMSEntities _context = new CMSEntities())
                 {
-                    if (_context.Blogs.Any(x => x.Alias.Equals(item.Alias)))
+                    if (_context.Blogs.Any(x => x.Alias.Equals(Alias)))
                     {
-                        var blog = _context.Blogs.SingleOrDefault(x => x.Alias.Equals(item.Alias));
+                        var blog = _context.Blogs.SingleOrDefault(x => x.Alias.Equals(Alias));
                         blog.Description = item.Description;
                         blog.Content = item.Content;
                         blog.Tags = item.Tags;
                         blog.Active = item.Active;
                         blog.CategoryID = item.CategoryID;
                         _context.SaveChanges();
-                        return CommonConst.SUCCESS;
+                        return _context.Blogs.Where(x => x.Alias.Equals(Alias)).Select(y => new Res_Blog
+                        {
+                            Active = (Boolean)y.Active,
+                            Alias = y.Alias,
+                            CategoryName = y.Category.Name,
+                            Description = y.Description,
+                            ID = y.ID,
+                            Tags = y.Tags,
+                            Thumbnail = y.Thumbnail,
+                            Title = y.Title
+                        }).SingleOrDefault();
                     }
                     else
                     {
-                        return CommonConst.NOTEXISTS;
+                        return null;
                     }
                 }
             }
             catch (Exception e)
             {
-                return CommonConst.ERROR;
+                return null;
             }
         }
 
-        public string Delete(string Alias)
+        public bool Delete(string Alias)
         {
             try
             {
@@ -94,21 +173,21 @@ namespace CMS_Library.Models
                         var blog = _context.Blogs.SingleOrDefault(x => x.Alias.Equals(Alias));
                         _context.Blogs.Remove(blog);
                         _context.SaveChanges();
-                        return CommonConst.SUCCESS;
+                        return true;
                     }
                     else
                     {
-                        return CommonConst.NOTEXISTS;
+                        return false;
                     }
                 }
             }
             catch (Exception e)
             {
-                return CommonConst.ERROR;
+                return false;
             }
         }
 
-        public string UpdateStatus(string Aliass)
+        public bool UpdateStatus(string Alias)
         {
             try
             {
@@ -117,19 +196,19 @@ namespace CMS_Library.Models
                     if (_context.Blogs.Any(x => x.Alias.Equals(Alias)))
                     {
                         var blog = _context.Blogs.SingleOrDefault(x => x.Alias.Equals(Alias));
-                        _context.Blogs.Remove(blog);
+                        blog.Active = !blog.Active;
                         _context.SaveChanges();
-                        return CommonConst.SUCCESS;
+                        return true;
                     }
                     else
                     {
-                        return CommonConst.NOTEXISTS;
+                        return false;
                     }
                 }
             }
             catch (Exception e)
             {
-                return CommonConst.ERROR;
+                return false;
             }
         }
     }

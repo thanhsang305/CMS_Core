@@ -483,7 +483,7 @@
         </member>
         <member name="T:CMS.Controllers.AccountController">
             <summary>
-            Tài khoản quan trị viên
+            Tài khoản quản trị viên
             </summary>
         </member>
         <member name="M:CMS.Controllers.AccountController.GetList(System.String)">
@@ -561,6 +561,64 @@
             <param name="token"></param>
             <param name="GUID"></param>
             <returns></returns>
+        </member>
+        <member name="T:CMS.Controllers.BlogController">
+            <summary>
+            Bài viết
+            </summary>
+        </member>
+        <member name="M:CMS.Controllers.BlogController.GetList(System.String)">
+            <summary>
+            Lấy danh sách bài viết
+            </summary>
+            <param name="TokenLogin"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CMS.Controllers.BlogController.Get(System.String,System.String)">
+            <summary>
+            Lấy thông tin 1 bài viết
+            </summary>
+            <param name="TokenLogin"></param>
+            <param name="Code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CMS.Controllers.BlogController.Create(System.String,CMS_Library.Models.VM_Blog)">
+            <summary>
+            Tạo mới 1 bài viết
+            </summary>
+            <param name="TokenLogin"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CMS.Controllers.BlogController.Update(System.String,System.String,CMS_Library.Models.VM_Blog)">
+            <summary>
+            Cập nhật thông tin bài viết
+            </summary>
+            <param name="TokenLogin"></param>
+            <param name="GUID"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CMS.Controllers.BlogController.UpdateStatus(System.String,System.String)">
+            <summary>
+            Cập nhật trạng thái 1 bài viết
+            </summary>
+            <param name="TokenLogin"></param>
+            <param name="Code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CMS.Controllers.BlogController.Delete(System.String,System.String)">
+            <summary>
+            Xóa 1 bài viết
+            </summary>
+            <param name="TokenLogin"></param>
+            <param name="Code"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CMS.Controllers.CategoryController">
+            <summary>
+            Loại bài viết
+            </summary>
         </member>
         <member name="M:CMS.Controllers.CategoryController.GetList(System.String)">
             <summary>
@@ -662,6 +720,64 @@
             <param name="TokenLogin"></param>
             <param name="Code"></param>
             <returns></returns>
+        </member>
+        <member name="T:CMS.Controllers.ProductController">
+            <summary>
+            Sản phẩm
+            </summary>
+        </member>
+        <member name="M:CMS.Controllers.ProductController.GetList(System.String)">
+            <summary>
+            Lấy danh sách sản phẩm
+            </summary>
+            <param name="TokenLogin"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CMS.Controllers.ProductController.Get(System.String,System.String)">
+            <summary>
+            Lấy thông tin 1 sản phẩm
+            </summary>
+            <param name="TokenLogin"></param>
+            <param name="Code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CMS.Controllers.ProductController.Create(System.String,CMS_Library.Models.VM_Product)">
+            <summary>
+            Tạo mới 1 sản phẩm
+            </summary>
+            <param name="TokenLogin"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CMS.Controllers.ProductController.Update(System.String,System.String,CMS_Library.Models.VM_Product)">
+            <summary>
+            Cập nhật thông tin sản phẩm
+            </summary>
+            <param name="TokenLogin"></param>
+            <param name="GUID"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CMS.Controllers.ProductController.UpdateStatus(System.String,System.String)">
+            <summary>
+            Cập nhật trạng thái 1 sản phẩm
+            </summary>
+            <param name="TokenLogin"></param>
+            <param name="Code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CMS.Controllers.ProductController.Delete(System.String,System.String)">
+            <summary>
+            Xóa 1 sản phẩm
+            </summary>
+            <param name="TokenLogin"></param>
+            <param name="Code"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CMS.Controllers.ProductTypeController">
+            <summary>
+            Loại sản phẩm
+            </summary>
         </member>
         <member name="M:CMS.Controllers.ProductTypeController.GetList(System.String)">
             <summary>
