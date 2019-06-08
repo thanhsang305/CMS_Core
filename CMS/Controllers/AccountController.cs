@@ -13,7 +13,7 @@ namespace CMS.Controllers
     /// </summary>
     public class AccountController : BaseApiController
     {
-        VM_Account acc = new VM_Account();
+        Res_Account acc = new Res_Account();
 
         /// <summary>
         /// Lấy danh sách tài khoản
@@ -75,13 +75,13 @@ namespace CMS.Controllers
         /// <returns></returns>
         [Route("API/Account/Login")]
         [HttpPost]
-        public IHttpActionResult Login(VM_Account_Login item)
+        public IHttpActionResult Login(Req_Account_Login item)
         {
             try
             {
                 if (!ModelState.IsValid)
                 {
-                    return Content(HttpStatusCode.BadRequest, res.BadRequest("Tên đăng nhập hoặc mật khẩu không đúng vui lòng kiểm tra lại."));
+                    return Content(HttpStatusCode.BadRequest, res.BadRequest(string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage))));
                 }
                 var data = acc.Login(item);
                 return Content(HttpStatusCode.OK, res.Ok(data, "Đăng nhập thành công!"));
@@ -152,7 +152,7 @@ namespace CMS.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("API/Account/Create")]
-        public IHttpActionResult Create([FromHeader]string TokenLogin, VM_Account item)
+        public IHttpActionResult Create([FromHeader]string TokenLogin, Req_Account item)
         {
             try
             {
@@ -185,7 +185,7 @@ namespace CMS.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("API/Account/Update/{GUID}")]
-        public IHttpActionResult Update([FromHeader]string TokenLogin, string GUID, VM_Account item)
+        public IHttpActionResult Update([FromHeader]string TokenLogin, string GUID, Req_Account item)
         {
             try
             {
@@ -252,7 +252,7 @@ namespace CMS.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("API/Account/ChangePassword")]
-        public IHttpActionResult ChangePassword([FromHeader]string TokenLogin, VM_Account_ChangePassword item)
+        public IHttpActionResult ChangePassword([FromHeader]string TokenLogin, Req_Account_ChangePassword item)
         {
             try
             {

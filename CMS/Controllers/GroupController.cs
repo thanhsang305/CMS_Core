@@ -12,7 +12,7 @@ namespace CMS.Controllers
 /// </summary>
     public class GroupController : BaseApiController
     {
-        VM_Group group = new VM_Group();
+        Res_Group group = new Res_Group();
 
         /// <summary>
         /// Lấy danh sách nhóm quyền
@@ -27,7 +27,7 @@ namespace CMS.Controllers
             {
                 if (checkAuth(TokenLogin))
                 {
-                    List<VM_Group> data = group.GetList();
+                    List<Res_Group> data = group.GetList();
                     return Content(HttpStatusCode.OK, res.Ok(data, "Thành công!"));
                 }
                 return Content(HttpStatusCode.Unauthorized, res.UnAuthorize("Tài khoản không có quyền"));
@@ -75,7 +75,7 @@ namespace CMS.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("API/Group/Create")]
-        public IHttpActionResult Create([FromHeader]string TokenLogin, VM_Group item)
+        public IHttpActionResult Create([FromHeader]string TokenLogin, Req_Group item)
         {
             try
             {
@@ -109,7 +109,7 @@ namespace CMS.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("API/Group/Update/{Code}")]
-        public IHttpActionResult Update([FromHeader]string TokenLogin, string Code, VM_Group item)
+        public IHttpActionResult Update([FromHeader]string TokenLogin, string Code, Req_Group item)
         {
             try
             {

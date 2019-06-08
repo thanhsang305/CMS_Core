@@ -13,7 +13,7 @@ namespace CMS.Controllers
     /// </summary>
     public class ProductController : BaseApiController
     {
-        VM_Product prod = new VM_Product();
+        Res_Product prod = new Res_Product();
 
         /// <summary>
         /// Lấy danh sách sản phẩm
@@ -76,7 +76,7 @@ namespace CMS.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("API/Product/Create")]
-        public IHttpActionResult Create([FromHeader]string TokenLogin, VM_Product item)
+        public IHttpActionResult Create([FromHeader]string TokenLogin, Req_Product item)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace CMS.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("API/Product/Update/{SKU}")]
-        public IHttpActionResult Update([FromHeader]string TokenLogin, string SKU, VM_Product item)
+        public IHttpActionResult Update([FromHeader]string TokenLogin, string SKU, Req_Product item)
         {
             try
             {

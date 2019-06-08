@@ -1,6 +1,7 @@
 ﻿using CMS_Library.Data;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,28 @@ namespace CMS_Library.Models
         public string SKU { get; set; }
         public string Name { get; set; }
         public string ShortDescription { get; set; }
+        public Boolean Active { get; set; }
+        public Boolean BestSeller { get; set; }
+        public Boolean Newest { get; set; }
+    }
+    public class Req_Product
+    {
+        [Required(ErrorMessage = "The product type is not null!")]
+        public int ProductTypeID { get; set; }
+        [Required(ErrorMessage = "The SKU is required!")]
+        public string SKU { get; set; }
+        [Required(ErrorMessage = "The name is required!")]
+        public string Name { get; set; }
+        [Required(ErrorMessage = "The short description is required!")]
+        public string ShortDescription { get; set; }
+        public string Description { get; set; }
+        public string Content { get; set; }
+        public string HashTag { get; set; }
+        public string Thumbnail { get; set; }
+        public Decimal Selling { get; set; }
+        public Decimal DiscountPrice { get; set; }
+        /*public int MediaID { get; set; }
+        public int SupplierID { get; set; }*/
         public Boolean Active { get; set; }
         public Boolean BestSeller { get; set; }
         public Boolean Newest { get; set; }
@@ -34,25 +57,6 @@ namespace CMS_Library.Models
         /*public int MediaID { get; set; }
         public int SupplierID { get; set; }*/
         public DateTime DateCreated { get; set; }
-        public Boolean Active { get; set; }
-        public Boolean BestSeller { get; set; }
-        public Boolean Newest { get; set; }
-    }
-    public class VM_Product
-    {
-        public int ID { get; set; }
-        public int ProductTypeID { get; set; }
-        public string SKU { get; set; }
-        public string Name { get; set; }
-        public string ShortDescription { get; set; }
-        public string Description { get; set; }
-        public string Content { get; set; }
-        public string HashTag { get; set; }
-        public string Thumbnail { get; set; }
-        public Decimal Selling { get; set; }
-        public Decimal DiscountPrice { get; set; }
-        /*public int MediaID { get; set; }
-        public int SupplierID { get; set; }*/
         public Boolean Active { get; set; }
         public Boolean BestSeller { get; set; }
         public Boolean Newest { get; set; }
@@ -112,7 +116,7 @@ namespace CMS_Library.Models
                 return null;
             }
         }
-        public Res_Product Create(VM_Product item)
+        public Res_Product Create(Req_Product item)
         {
             try
             {
@@ -166,8 +170,7 @@ namespace CMS_Library.Models
                 return null;
             }
         }
-
-        public Res_Product Update(string SKU, VM_Product item)
+        public Res_Product Update(string SKU, Req_Product item)
         {
             try
             {
@@ -218,7 +221,6 @@ namespace CMS_Library.Models
                 return null;
             }
         }
-
         public bool Delete(string SKU)
         {
             try
@@ -243,7 +245,6 @@ namespace CMS_Library.Models
                 return false;
             }
         }
-
         public bool UpdateStatus(string SKU)
         {
             try

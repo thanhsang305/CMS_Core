@@ -1,13 +1,24 @@
 ﻿using CMS_Library.Data;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CMS_Library.Models
 {
-    public class VM_ProductType
+    public class Req_ProductType
+    {
+        [Required(ErrorMessage = "The code is required!")]
+        public string Code { get; set; }
+        [Required(ErrorMessage = "The name is required!")]
+        public string Name { get; set; }
+        public string Thumbnail { get; set; }
+        public string Description { get; set; }
+        public Boolean Active { get; set; }
+    }
+    public class Res_ProductType
     {
         public string Code { get; set; }
         public string Name { get; set; }
@@ -16,13 +27,13 @@ namespace CMS_Library.Models
         public Boolean Active { get; set; }
         public DateTime DateCreated { get; set; }
 
-        public List<VM_ProductType> GetList()
+        public List<Res_ProductType> GetList()
         {
             try
             {
                 using (CMSEntities _context = new CMSEntities())
                 {
-                    return _context.ProductTypes.Select(y => new VM_ProductType
+                    return _context.ProductTypes.Select(y => new Res_ProductType
                     {
                         Code = y.Code,
                         Name = y.Name,
@@ -39,13 +50,13 @@ namespace CMS_Library.Models
             }
         }
 
-        public VM_ProductType Get(string Code)
+        public Res_ProductType Get(string Code)
         {
             try
             {
                 using (CMSEntities _context = new CMSEntities())
                 {
-                    return _context.ProductTypes.Where(x=>x.Code.Equals(Code)).Select(y => new VM_ProductType
+                    return _context.ProductTypes.Where(x=>x.Code.Equals(Code)).Select(y => new Res_ProductType
                     {
                         Code = y.Code,
                         Name = y.Name,
@@ -62,7 +73,7 @@ namespace CMS_Library.Models
             }
         }
 
-        public VM_ProductType Create(VM_ProductType item)
+        public Res_ProductType Create(Req_ProductType item)
         {
             try
             {
@@ -78,7 +89,7 @@ namespace CMS_Library.Models
                         productType.DateCreated = DateTime.UtcNow;
                         _context.ProductTypes.Add(productType);
                         _context.SaveChanges();
-                        return _context.ProductTypes.Where(x => x.Code.Equals(item.Code)).Select(y => new VM_ProductType
+                        return _context.ProductTypes.Where(x => x.Code.Equals(item.Code)).Select(y => new Res_ProductType
                         {
                             Code = y.Code,
                             Name = y.Name,
@@ -97,7 +108,7 @@ namespace CMS_Library.Models
             }
         }
 
-        public VM_ProductType Update(string Code, VM_ProductType item)
+        public Res_ProductType Update(string Code, Req_ProductType item)
         {
             try
             {
@@ -110,7 +121,7 @@ namespace CMS_Library.Models
                         productType.Description = item.Description;
                         productType.Active = item.Active;
                         _context.SaveChanges();
-                        return _context.ProductTypes.Where(x => x.Code.Equals(Code)).Select(y => new VM_ProductType
+                        return _context.ProductTypes.Where(x => x.Code.Equals(Code)).Select(y => new Res_ProductType
                         {
                             Code = y.Code,
                             Name = y.Name,

@@ -13,7 +13,7 @@ namespace CMS.Controllers
     /// </summary>
     public class ProductTypeController : BaseApiController
     {
-        VM_ProductType prodType = new VM_ProductType();
+        Res_ProductType prodType = new Res_ProductType();
 
         /// <summary>
         /// Lấy danh sách loại sản phẩm
@@ -28,7 +28,7 @@ namespace CMS.Controllers
             {
                 if (checkAuth(TokenLogin))
                 {
-                    List<VM_ProductType> data = prodType.GetList();
+                    List<Res_ProductType> data = prodType.GetList();
                     return Content(HttpStatusCode.OK, res.Ok(data, "Thành công!"));
                 }
                 return Content(HttpStatusCode.Unauthorized, res.UnAuthorize("Tài khoản không có quyền"));
@@ -76,7 +76,7 @@ namespace CMS.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("API/ProductType/Create")]
-        public IHttpActionResult Create([FromHeader]string TokenLogin, VM_ProductType item)
+        public IHttpActionResult Create([FromHeader]string TokenLogin, Req_ProductType item)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace CMS.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("API/ProductType/Update/{Code}")]
-        public IHttpActionResult Update([FromHeader]string TokenLogin, string Code, VM_ProductType item)
+        public IHttpActionResult Update([FromHeader]string TokenLogin, string Code, Req_ProductType item)
         {
             try
             {

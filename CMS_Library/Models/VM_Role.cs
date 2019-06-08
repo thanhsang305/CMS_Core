@@ -1,13 +1,23 @@
 ﻿using CMS_Library.Data;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CMS_Library.Models
 {
-    class VM_Role
+    public class Req_Role
+    {
+        public int? ID { get; set; }
+        [Required(ErrorMessage = "The code is required !")]
+        public string Code { get; set; }
+        [Required(ErrorMessage = "The code name is required !")]
+        public string Name { get; set; }
+        public Boolean Active { get; set; }
+    }
+    public class Res_Role
     {
         public int? ID { get; set; }
         public string Code { get; set; }
@@ -15,7 +25,55 @@ namespace CMS_Library.Models
         public Boolean Active { get; set; }
         public DateTime DateCreated { get; set; }
 
-        public string Create(VM_Role item)
+        public List<Res_Role> GetList()
+        {
+            try
+            {
+                using (CMSEntities _context = new CMSEntities())
+                {
+                    return _context.Roles.Select(y => new Res_Role
+                    {
+                        ID = y.ID,
+                        Active = (Boolean)y.Active,
+                        Code = y.Code,
+                        DateCreated = (DateTime)y.DateCreated,
+                        Name = y.Name
+                    }).ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public Res_Role Get(string Code)
+        {
+            try
+            {
+                using (CMSEntities _context = new CMSEntities())
+                {
+                    if (string.IsNullOrEmpty(Code))
+                    {
+                        return null;
+                    }
+                    return _context.Roles.Where(x=>x.Code.Equals(Code)).Select(y => new Res_Role
+                    {
+                        ID = y.ID,
+                        Active = (Boolean)y.Active,
+                        Code = y.Code,
+                        DateCreated = (DateTime)y.DateCreated,
+                        Name = y.Name
+                    }).SingleOrDefault();
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public Res_Role Create(Req_Role item)
         {
             try
             {
@@ -26,25 +84,31 @@ namespace CMS_Library.Models
                         var role = new Role();
                         role.Code = item.Code;
                         role.Name = item.Name;
-                        role.Active = item.Active;
+                        role.Active = item.Active == null ? false : item.Active;
                         role.DateCreated = DateTime.UtcNow;
                         _context.Roles.Add(role);
                         _context.SaveChanges();
-                        return CommonConst.SUCCESS;
+                        return _context.Roles.Where(x=>x.Code.Equals(item.Code)).Select(y => new Res_Role {
+                            ID = y.ID,
+                            Active = (Boolean)y.Active,
+                            Code = y.Code,
+                            DateCreated = (DateTime)y.DateCreated,
+                            Name = y.Name
+                        }).SingleOrDefault();
                     }
                     else
                     {
-                        return CommonConst.EXISTS;
+                        return null;
                     }
                 }
             }
             catch (Exception e)
             {
-                return CommonConst.ERROR;
+                return null;
             }
         }
 
-        public string Update(VM_Role item)
+        public Res_Role Update(Req_Role item)
         {
             try
             {
@@ -56,22 +120,29 @@ namespace CMS_Library.Models
                         role.Name = item.Name;
                         role.Active = item.Active;
                         _context.SaveChanges();
-                        return CommonConst.SUCCESS;
+                        return _context.Roles.Where(x => x.Code.Equals(item.Code)).Select(y => new Res_Role
+                        {
+                            ID = y.ID,
+                            Active = (Boolean)y.Active,
+                            Code = y.Code,
+                            DateCreated = (DateTime)y.DateCreated,
+                            Name = y.Name
+                        }).SingleOrDefault();
 
                     }
                     else
                     {
-                        return CommonConst.NOTEXISTS;
+                        return null;
                     }
                 }
             }
             catch (Exception e)
             {
-                return CommonConst.ERROR;
+                return null;
             }
         }
 
-        public string Delete(string code)
+        public bool Delete(string code)
         {
             try
             {
@@ -82,22 +153,22 @@ namespace CMS_Library.Models
                         var role = _context.Roles.SingleOrDefault(x => x.Code.Equals(code));
                         _context.Roles.Remove(role);
                         _context.SaveChanges();
-                        return CommonConst.SUCCESS;
+                        return true;
 
                     }
                     else
                     {
-                        return CommonConst.ERROR;
+                        return false;
                     }
                 }
             }
             catch (Exception e)
             {
-                return CommonConst.ERROR;
+                return false;
             }
         }
 
-        public string UpdateStatus(string code)
+        public bool UpdateStatus(string code)
         {
             try
             {
@@ -108,17 +179,17 @@ namespace CMS_Library.Models
                         var role = _context.Roles.SingleOrDefault(x => x.Code.Equals(code));
                         role.Active = !role.Active;
                         _context.SaveChanges();
-                        return CommonConst.SUCCESS;
+                        return true;
                     }
                     else
                     {
-                        return CommonConst.NOTEXISTS;
+                        return false;
                     }
                 }
             }
             catch (Exception e)
             {
-                return CommonConst.ERROR;
+                return false;
             }
         }
     }

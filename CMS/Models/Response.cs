@@ -23,7 +23,7 @@ namespace CMS.Models
             }
             else
             {
-                this.Code = 200;
+                this.Code = 204;
                 this.Status = "The request was successful but there is no representation to return";
                 this.Message = Msg;
             }

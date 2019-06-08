@@ -13,10 +13,6 @@ E:\My Projects\CMS\CMS_Library\obj\Debug\CMS_Library.csproj.CopyComplete
 E:\My Projects\CMS\CMS_Library\obj\Debug\CMS_Library.dll
 E:\My Projects\CMS\CMS_Library\obj\Debug\CMS_Library.pdb
 E:\My Projects\CMS\CMS_Library\obj\Debug\CMS_Library.csprojAssemblyReference.cache
-E:\My Projects\CMS_Core\CMS_Library\obj\Debug\CMS_Library.csprojAssemblyReference.cache
-E:\My Projects\CMS_Core\CMS_Library\obj\Debug\CMS_Library.csproj.CoreCompileInputs.cache
-E:\My Projects\CMS_Core\CMS_Library\obj\Debug\CMS_Library.dll
-E:\My Projects\CMS_Core\CMS_Library\obj\Debug\CMS_Library.pdb
 E:\My Projects\CMS_Core\CMS_Library\bin\Debug\CMS_Library.dll.config
 E:\My Projects\CMS_Core\CMS_Library\bin\Debug\CMS_Library.dll
 E:\My Projects\CMS_Core\CMS_Library\bin\Debug\CMS_Library.pdb
@@ -27,4 +23,8 @@ E:\My Projects\CMS_Core\CMS_Library\bin\Debug\EntityFramework.xml
 E:\My Projects\CMS_Core\CMS_Library\bin\Debug\EntityFramework.SqlServer.xml
 E:\My Projects\CMS_Core\CMS_Library\bin\Debug\Newtonsoft.Json.pdb
 E:\My Projects\CMS_Core\CMS_Library\bin\Debug\Newtonsoft.Json.xml
+E:\My Projects\CMS_Core\CMS_Library\obj\Debug\CMS_Library.csprojAssemblyReference.cache
+E:\My Projects\CMS_Core\CMS_Library\obj\Debug\CMS_Library.csproj.CoreCompileInputs.cache
 E:\My Projects\CMS_Core\CMS_Library\obj\Debug\CMS_Library.csproj.CopyComplete
+E:\My Projects\CMS_Core\CMS_Library\obj\Debug\CMS_Library.dll
+E:\My Projects\CMS_Core\CMS_Library\obj\Debug\CMS_Library.pdb

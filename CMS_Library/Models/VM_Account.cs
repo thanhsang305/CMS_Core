@@ -2,21 +2,32 @@
 using CMS_Library.Helpers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CMS_Library.Models
 {
-    public class VM_Account_Login
+    public class Req_Account_Login
     {
+        [Required(ErrorMessage = "The username is required !")]
         public string Username { get; set; }
+        [Required(ErrorMessage = "The password is required !")]
         public string Password { get; set; }
     }
-    public class VM_Account_ChangePassword
+    public class Req_Account_ChangePassword
     {
+        [Required(ErrorMessage = "The old password is required !")]
+        [DataType(DataType.Password)]
         public string OldPassword { get; set; }
+
+        [Required(ErrorMessage = "The new password is required !")]
+        [DataType(DataType.Password)]
         public string NewPassword { get; set; }
+
+        [DataType(DataType.Password)]
+        [Compare("NewPassword", ErrorMessage = "The new password confirm is not correct!")]
         public string ConfirmPassword { get; set; }
     }
     public class Res_Account
@@ -32,36 +43,6 @@ namespace CMS_Library.Models
         public string Address { get; set; }
         public string TokenLogin { get; set; }
         public Boolean Active { get; set; }
-    }
-    public class VM_Account
-    {
-        //public int ID { get; set; }
-        public string GUID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string FullName { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Address { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        //public string Thumbnail { get; set; }
-        public string IdCardNumber { get; set; }
-        public int GroupID { get; set; }
-        //public string TokenRegister { get; set; }
-        //public DateTime ExpireTokenRegister { get; set; }
-        //public string TokenLogin { get; set; }
-        //public DateTime ExpireTokenLogin { get; set; }
-        //public string TokenForgotPassword { get; set; }
-        //public DateTime ExpireTokenForgotPassword { get; set; }
-        //public Boolean IsAppove { get; set; }
-        public Boolean Active { get; set; }
-        public Boolean IsVerifyEmail { get; set; }
-        public Boolean IsVerifyPhone { get; set; }
-        //public Boolean IsBanned { get; set; }
-        //public DateTime DateBanned { get; set; }
-        //public DateTime DateCreated { get; set; }
 
         public List<Res_Account> GetList()
         {
@@ -69,7 +50,8 @@ namespace CMS_Library.Models
             {
                 using (CMSEntities _context = new CMSEntities())
                 {
-                    return _context.Accounts.Select(y => new Res_Account {
+                    return _context.Accounts.Select(y => new Res_Account
+                    {
                         GUID = y.GUID,
                         FirstName = y.FirstName,
                         LastName = y.LastName,
@@ -95,7 +77,7 @@ namespace CMS_Library.Models
             {
                 using (CMSEntities _context = new CMSEntities())
                 {
-                    return _context.Accounts.Where(x=>x.GUID.Equals(GUID)).Select(y => new Res_Account
+                    return _context.Accounts.Where(x => x.GUID.Equals(GUID)).Select(y => new Res_Account
                     {
                         GUID = y.GUID,
                         FirstName = y.FirstName,
@@ -116,13 +98,13 @@ namespace CMS_Library.Models
                 return null;
             }
         }
-        public Res_Account Create(VM_Account item)
+        public Res_Account Create(Req_Account item)
         {
             try
             {
                 using (CMSEntities _context = new CMSEntities())
                 {
-                    if (!_context.Accounts.Any(x=>(x.Username.Equals(item.Email) && x.IsVerifyEmail==true) || (x.PhoneNumber.Equals(item.PhoneNumber) && x.IsVerifyPhone == true)))
+                    if (!_context.Accounts.Any(x => (x.Username.Equals(item.Email) && x.IsVerifyEmail == true) || (x.PhoneNumber.Equals(item.PhoneNumber) && x.IsVerifyPhone == true)))
                     {
                         var acc = new Account();
                         acc.Active = item.Active;
@@ -171,7 +153,7 @@ namespace CMS_Library.Models
                 return null;
             }
         }
-        public Res_Account Update(string GUID, VM_Account item)
+        public Res_Account Update(string GUID, Req_Account item)
         {
             try
             {
@@ -252,7 +234,7 @@ namespace CMS_Library.Models
                     if (_context.Accounts.Any(x => x.GUID.Equals(GUID)))
                     {
                         var acc = _context.Accounts.SingleOrDefault(x => x.GUID.Equals(GUID));
-                        acc.Thumbnail = CMS_Helpers.ConvertBase64ToImage(Img, "Thumbnail-"+CMS_Helpers.MD5(DateTime.UtcNow.ToString()));
+                        acc.Thumbnail = CMS_Helpers.ConvertBase64ToImage(Img, "Thumbnail-" + CMS_Helpers.MD5(DateTime.UtcNow.ToString()));
                         _context.SaveChanges();
                         return _context.Accounts.Where(x => x.GUID.Equals(acc.GUID)).Select(y => new Res_Account
                         {
@@ -330,7 +312,7 @@ namespace CMS_Library.Models
                 return false;
             }
         }
-        public Res_Account Login(VM_Account_Login item)
+        public Res_Account Login(Req_Account_Login item)
         {
             try
             {
@@ -344,7 +326,7 @@ namespace CMS_Library.Models
                         {
                             acc.TokenLogin = CMS_Helpers.GenerateGUID();
                             acc.ExpireTokenLogin = DateTime.UtcNow.AddHours(12);
-                        }                        
+                        }
                         _context.SaveChanges();
 
                         return _context.Accounts.Where(x => x.GUID.Equals(acc.GUID)).Select(y => new Res_Account
@@ -379,9 +361,9 @@ namespace CMS_Library.Models
             {
                 using (CMSEntities _context = new CMSEntities())
                 {
-                    if (_context.Accounts.Any(x=>x.TokenLogin.Equals(TokenLogin)))
+                    if (_context.Accounts.Any(x => x.TokenLogin.Equals(TokenLogin)))
                     {
-                        var acc = _context.Accounts.SingleOrDefault(x=>x.TokenLogin.Equals(TokenLogin));
+                        var acc = _context.Accounts.SingleOrDefault(x => x.TokenLogin.Equals(TokenLogin));
                         acc.ExpireTokenLogin = DateTime.UtcNow;
                         _context.SaveChanges();
                         return true;
@@ -400,14 +382,14 @@ namespace CMS_Library.Models
             {
                 using (CMSEntities _context = new CMSEntities())
                 {
-                    if (_context.Accounts.Any(x=>x.Username.Equals(Username)))
+                    if (_context.Accounts.Any(x => x.Username.Equals(Username)))
                     {
-                        var acc = _context.Accounts.SingleOrDefault(x=>x.Username.Equals(Username));
+                        var acc = _context.Accounts.SingleOrDefault(x => x.Username.Equals(Username));
                         var NewPassword = CMS_Helpers.GeneratePassword();
                         acc.Password = CMS_Helpers.MD5(NewPassword);
                         if (string.IsNullOrEmpty(acc.Email))
                         {
-                            CMS_Helpers.SendEmail(acc.Email, "Quên mật khẩu", "Mật khẩu mới là: "+ NewPassword);
+                            CMS_Helpers.SendEmail(acc.Email, "Quên mật khẩu", "Mật khẩu mới là: " + NewPassword);
                             return true;
                         }
                         return false;
@@ -420,5 +402,34 @@ namespace CMS_Library.Models
                 return false;
             }
         }
+    }
+    public class Req_Account
+    {
+        public int ID { get; set; }
+        public string GUID { get; set; }
+        [Required(ErrorMessage = "The first name is required!")]
+        public string FirstName { get; set; }
+        [Required(ErrorMessage = "The last name is required!")]
+        public string LastName { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        [Required(ErrorMessage = "The email is required!")]
+        public string Email { get; set; }
+        [Required(ErrorMessage = "The phone number is required!")]
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
+        [Required(ErrorMessage = "The username is required!")]
+        public string Username { get; set; }
+        [Required(ErrorMessage = "The password is required!")]
+        public string Password { get; set; }
+        public string Thumbnail { get; set; }
+        public string IdCardNumber { get; set; }
+        public int GroupID { get; set; }
+        public Boolean IsAppove { get; set; }
+        public Boolean Active { get; set; }
+        public Boolean IsVerifyEmail { get; set; }
+        public Boolean IsVerifyPhone { get; set; }
+        public Boolean IsBanned { get; set; }
+        public DateTime DateBanned { get; set; }
+        public DateTime DateCreated { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CMS_Library.Data;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,21 +18,6 @@ namespace CMS_Library.Models
         public string Tags { get; set; }
         public Boolean Active { get; set; }
         public string CategoryName { get; set; }
-    }
-    public class VM_Blog
-    {
-        public int ID { get; set; }
-        public string Alias { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string Content { get; set; }
-        public string Thumbnail { get; set; }
-        public string Tags { get; set; }
-        public Boolean Active { get; set; }
-        public int CategoryID { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime DatePost { get; set; }
-
         public List<Res_Blog> GetList()
         {
             try
@@ -80,7 +66,7 @@ namespace CMS_Library.Models
                 return null;
             }
         }
-        public Res_Blog Create(VM_Blog item)
+        public Res_Blog Create(Req_Blog item)
         {
             try
             {
@@ -123,7 +109,7 @@ namespace CMS_Library.Models
             }
         }
 
-        public Res_Blog Update(string Alias, VM_Blog item)
+        public Res_Blog Update(string Alias, Req_Blog item)
         {
             try
             {
@@ -211,5 +197,23 @@ namespace CMS_Library.Models
                 return false;
             }
         }
+    }
+    public class Req_Blog
+    {
+        public int ID { get; set; }
+        [Required(ErrorMessage = "The alias is required!")]
+        public string Alias { get; set; }
+        [Required(ErrorMessage = "The title is required!")]
+        public string Title { get; set; }
+        [Required(ErrorMessage = "The description is required!")]
+        public string Description { get; set; }
+        [Required(ErrorMessage = "The content is required!")]
+        public string Content { get; set; }
+        public string Thumbnail { get; set; }
+        public string Tags { get; set; }
+        public Boolean Active { get; set; }
+        public int CategoryID { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DatePost { get; set; }
     }
 }

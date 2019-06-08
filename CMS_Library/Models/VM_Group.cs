@@ -1,33 +1,35 @@
 ﻿using CMS_Library.Data;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CMS_Library.Models
 {
+    public class Req_Group
+    {
+        [Required(ErrorMessage = "The code is required!")]
+        public string Code { get; set; }
+        [Required(ErrorMessage = "The name is required!")]
+        public string Name { get; set; }
+        public Boolean Active { get; set; }
+    }
     public class Res_Group
     {
         public string Code { get; set; }
         public string Name { get; set; }
         public Boolean Active { get; set; }
         public DateTime DateCreated { get; set; }
-    }
-    public class VM_Group
-    {
-        public string Code { get; set; }
-        public string Name { get; set; }
-        public Boolean Active { get; set; }
-        public DateTime DateCreated { get; set; }
 
-        public List<VM_Group> GetList()
+        public List<Res_Group> GetList()
         {
             try
             {
                 using (CMSEntities _context = new CMSEntities())
                 {
-                    return _context.Groups.Select(y => new VM_Group
+                    return _context.Groups.Select(y => new Res_Group
                     {
                         Code = y.Code,
                         Name = y.Name,
@@ -41,13 +43,13 @@ namespace CMS_Library.Models
                 return null;
             }
         }
-        public VM_Group Get(string Code)
+        public Res_Group Get(string Code)
         {
             try
             {
                 using (CMSEntities _context = new CMSEntities())
                 {
-                    return _context.Groups.Where(x=>x.Code.Equals(Code)).Select(y => new VM_Group
+                    return _context.Groups.Where(x=>x.Code.Equals(Code)).Select(y => new Res_Group
                     {
                         Code = y.Code,
                         Name = y.Name,
@@ -61,7 +63,7 @@ namespace CMS_Library.Models
                 return null;
             }
         }
-        public VM_Group Create(VM_Group item)
+        public Res_Group Create(Req_Group item)
         {
             try
             {
@@ -77,7 +79,7 @@ namespace CMS_Library.Models
                         _context.Groups.Add(group);
                         _context.SaveChanges();
 
-                        return _context.Groups.Where(x => x.Code.Equals(group.Code)).Select(y => new VM_Group
+                        return _context.Groups.Where(x => x.Code.Equals(group.Code)).Select(y => new Res_Group
                         {
                             Code = y.Code,
                             Name = y.Name,
@@ -93,8 +95,7 @@ namespace CMS_Library.Models
                 return null;
             }
         }
-
-        public VM_Group Update(string Code, VM_Group item)
+        public Res_Group Update(string Code, Req_Group item)
         {
             try
             {
@@ -106,7 +107,7 @@ namespace CMS_Library.Models
                         group.Name = item.Name;
                         group.Active = item.Active;
                         _context.SaveChanges();
-                        return _context.Groups.Where(x => x.Code.Equals(group.Code)).Select(y => new VM_Group
+                        return _context.Groups.Where(x => x.Code.Equals(group.Code)).Select(y => new Res_Group
                         {
                             Code = y.Code,
                             Name = y.Name,
@@ -122,7 +123,6 @@ namespace CMS_Library.Models
                 return null;
             }
         }
-
         public Boolean Delete(string Code)
         {
             try
@@ -144,7 +144,6 @@ namespace CMS_Library.Models
                 return false;
             }
         }
-
         public Boolean UpdateStatus(string Code)
         {
             try

@@ -13,7 +13,7 @@ namespace CMS.Controllers
     /// </summary>
     public class BlogController : BaseApiController
     {
-        VM_Blog blog = new VM_Blog();
+        Res_Blog blog = new Res_Blog();
 
         /// <summary>
         /// Lấy danh sách bài viết
@@ -76,7 +76,7 @@ namespace CMS.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("API/Blog/Create")]
-        public IHttpActionResult Create([FromHeader]string TokenLogin, VM_Blog item)
+        public IHttpActionResult Create([FromHeader]string TokenLogin, Req_Blog item)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace CMS.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("API/Blog/Update/{Alias}")]
-        public IHttpActionResult Update([FromHeader]string TokenLogin, string Alias, VM_Blog item)
+        public IHttpActionResult Update([FromHeader]string TokenLogin, string Alias, Req_Blog item)
         {
             try
             {

@@ -155,6 +155,8 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CMS_Helpers.cs" />
+    <Compile Include="Models\VM_GroupUser.cs" />
+    <Compile Include="Models\VM_User.cs" />
     <Compile Include="Models\VM_Category.cs" />
     <Compile Include="Models\CommonConst.cs" />
     <Compile Include="Models\VM_Group.cs" />

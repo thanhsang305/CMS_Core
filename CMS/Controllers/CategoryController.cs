@@ -13,7 +13,7 @@ namespace CMS.Controllers
     /// </summary>
     public class CategoryController : BaseApiController
     {
-        VM_Category cat = new VM_Category();
+        Res_Category cat = new Res_Category();
 
         /// <summary>
         /// Lấy danh sách loại bài viết
@@ -28,7 +28,7 @@ namespace CMS.Controllers
             {
                 if (checkAuth(TokenLogin))
                 {
-                    List<VM_Category> data = cat.GetList();
+                    List<Res_Category> data = cat.GetList();
                     return Content(HttpStatusCode.OK, res.Ok(data, "Thành công!"));
                 }
                 return Content(HttpStatusCode.Unauthorized, res.UnAuthorize("Tài khoản không có quyền"));
@@ -76,7 +76,7 @@ namespace CMS.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("API/Category/Create")]
-        public IHttpActionResult Create([FromHeader]string TokenLogin, VM_Category item)
+        public IHttpActionResult Create([FromHeader]string TokenLogin, Req_Category item)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace CMS.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("API/Category/Update/{Code}")]
-        public IHttpActionResult Update([FromHeader]string TokenLogin, string Code, VM_Category item)
+        public IHttpActionResult Update([FromHeader]string TokenLogin, string Code, Req_Category item)
         {
             try
             {

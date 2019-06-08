@@ -1,13 +1,24 @@
 ﻿using CMS_Library.Data;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CMS_Library.Models
 {
-    public class VM_Category
+    public class Req_Category
+    {
+        [Required(ErrorMessage = "The name is required!")]
+        public string Name { get; set; }
+        [Required(ErrorMessage = "The code is required!")]
+        public string Code { get; set; }
+        public string Thumbnail { get; set; }
+        public string Description { get; set; }
+        public Boolean Active { get; set; }
+    }
+    public class Res_Category
     {
         public string Name { get; set; }
         public string Code { get; set; }
@@ -16,13 +27,13 @@ namespace CMS_Library.Models
         public DateTime DateCreated { get; set; }
         public Boolean Active { get; set; }
 
-        public List<VM_Category> GetList()
+        public List<Res_Category> GetList()
         {
             try
             {
                 using (CMSEntities _context = new CMSEntities())
                 {
-                    return _context.Categories.Select(y => new VM_Category
+                    return _context.Categories.Select(y => new Res_Category
                     {
                         Active = (Boolean)y.Active,
                         Code = y.Code,
@@ -38,14 +49,13 @@ namespace CMS_Library.Models
                 return null;
             }
         }
-
-        public VM_Category Get(string Code)
+        public Res_Category Get(string Code)
         {
             try
             {
                 using (CMSEntities _context = new CMSEntities())
                 {
-                    return _context.Categories.Where(x=>x.Code.Equals(Code)).Select(y => new VM_Category
+                    return _context.Categories.Where(x=>x.Code.Equals(Code)).Select(y => new Res_Category
                     {
                         Active = (Boolean)y.Active,
                         Code = y.Code,
@@ -61,8 +71,7 @@ namespace CMS_Library.Models
                 return null;
             }
         }
-
-        public VM_Category Create(VM_Category item)
+        public Res_Category Create(Req_Category item)
         {
             try
             {
@@ -78,7 +87,7 @@ namespace CMS_Library.Models
                         category.DateCreated = DateTime.UtcNow;
                         _context.Categories.Add(category);
                         _context.SaveChanges();
-                        return _context.Categories.Where(x => x.Code.Equals(item.Code)).Select(y => new VM_Category
+                        return _context.Categories.Where(x => x.Code.Equals(item.Code)).Select(y => new Res_Category
                         {
                             Active = (Boolean)y.Active,
                             Code = y.Code,
@@ -96,8 +105,7 @@ namespace CMS_Library.Models
                 return null;
             }
         }
-
-        public VM_Category Update(string Code, VM_Category item)
+        public Res_Category Update(string Code, Req_Category item)
         {
             try
             {
@@ -110,7 +118,7 @@ namespace CMS_Library.Models
                         category.Description = item.Description;
                         category.Active = item.Active;
                         _context.SaveChanges();
-                        return _context.Categories.Where(x => x.Code.Equals(Code)).Select(y => new VM_Category
+                        return _context.Categories.Where(x => x.Code.Equals(Code)).Select(y => new Res_Category
                         {
                             Active = (Boolean)y.Active,
                             Code = y.Code,
@@ -128,7 +136,6 @@ namespace CMS_Library.Models
                 return null;
             }
         }
-
         public Boolean Delete(string code)
         {
             try
@@ -150,7 +157,6 @@ namespace CMS_Library.Models
                 return false;
             }
         }
-
         public Boolean UpdateStatus(string code)
         {
             try
